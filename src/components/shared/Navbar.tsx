@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 function Navbar() {
   return (
     <div>
-      Navbar
+      <p className='text-xs'>Navbar</p>
       <Outlet />
     </div>
   );

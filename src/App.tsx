@@ -1,8 +1,10 @@
 import Routes from '@/router/Routes';
+import { flexCenter } from '@/styles/flex';
+import { mobilScreen } from '@/styles/screen';
 
 function App() {
   return (
-    <div style={{ width: '100%', height: '100vh' }}>
+    <div className={`${mobilScreen} ${flexCenter} bg-green`}>
       <Routes />
     </div>
   );
