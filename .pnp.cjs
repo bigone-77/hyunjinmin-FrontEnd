@@ -37,6 +37,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-prettier", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:5.2.1"],\
           ["eslint-plugin-react-hooks", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:5.1.0-rc-fb9a90fa48-20240614"],\
           ["eslint-plugin-react-refresh", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:0.4.11"],\
+          ["framer-motion", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:11.5.5"],\
           ["globals", "npm:15.9.0"],\
           ["postcss", "npm:8.4.47"],\
           ["prettier", "npm:3.3.3"],\
@@ -67,6 +68,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-prettier", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:5.2.1"],\
           ["eslint-plugin-react-hooks", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:5.1.0-rc-fb9a90fa48-20240614"],\
           ["eslint-plugin-react-refresh", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:0.4.11"],\
+          ["framer-motion", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:11.5.5"],\
           ["globals", "npm:15.9.0"],\
           ["postcss", "npm:8.4.47"],\
           ["prettier", "npm:3.3.3"],\
@@ -2293,6 +2295,37 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/fraction.js-npm-4.3.7-c2c7e95a8e-df291391be.zip/node_modules/fraction.js/",\
         "packageDependencies": [\
           ["fraction.js", "npm:4.3.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["framer-motion", [\
+      ["npm:11.5.5", {\
+        "packageLocation": "./.yarn/cache/framer-motion-npm-11.5.5-76d30b7ff8-5b6c47ed16.zip/node_modules/framer-motion/",\
+        "packageDependencies": [\
+          ["framer-motion", "npm:11.5.5"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:11.5.5", {\
+        "packageLocation": "./.yarn/__virtual__/framer-motion-virtual-f9619cfd02/0/cache/framer-motion-npm-11.5.5-76d30b7ff8-5b6c47ed16.zip/node_modules/framer-motion/",\
+        "packageDependencies": [\
+          ["framer-motion", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:11.5.5"],\
+          ["@emotion/is-prop-valid", null],\
+          ["@types/emotion__is-prop-valid", null],\
+          ["@types/react", "npm:18.3.5"],\
+          ["@types/react-dom", "npm:18.3.0"],\
+          ["react", "npm:18.3.1"],\
+          ["react-dom", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:18.3.1"],\
+          ["tslib", "npm:2.7.0"]\
+        ],\
+        "packagePeers": [\
+          "@emotion/is-prop-valid",\
+          "@types/emotion__is-prop-valid",\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\

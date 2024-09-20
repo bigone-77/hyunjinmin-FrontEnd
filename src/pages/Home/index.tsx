@@ -5,7 +5,7 @@ import TimeTable from '@shared/TimeTable';
 
 function MainPage() {
   return (
-    <div className='pt-[57px] overflow-hidden'>
+    <div className='pb-6 overflow-hidden'>
       <Banner />
       <main className='px-4 pt-6'>
         <Button.Group>

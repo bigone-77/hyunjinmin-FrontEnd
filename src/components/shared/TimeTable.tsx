@@ -20,7 +20,7 @@ function TimeTable() {
       title: '수학의 정석',
       day: '화',
       startTime: 12,
-      duration: 3,
+      duration: 3.3,
       place: '318호',
       bgColor: 'orange',
     },

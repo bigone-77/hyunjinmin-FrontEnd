@@ -14,7 +14,7 @@ function Banner() {
           학생
         </p>
       </div>
-      <div className='flex items-center my-3 gap-x-4'>
+      <div className='flex items-center my-4 gap-x-4'>
         <p>월, 수, 금 반</p>|<div className='px-2'>상점: 15점</div>|
         <p>벌점: 5점</p>
       </div>
