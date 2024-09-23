@@ -1,7 +1,7 @@
-import Spacing from '@shared/Spacing';
-import Banner from '@shared/Banner';
-import Button from '@shared/Button';
-import TimeTable from '@shared/TimeTable';
+import Spacing from '@/components/shared/Spacing';
+import Banner from '@/components/shared/Banner';
+import Button from '@/components/shared/Button';
+import TimeTable from '@/components/shared/TimeTable';
 
 function HomePage() {
   return (

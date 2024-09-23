@@ -1,5 +1,5 @@
-import Spacing from '@/components/shared/Spacing';
 import { flexColumn } from '@/styles/flex';
+import Spacing from '@/components/shared/Spacing';
 
 function LoginPage() {
   return (

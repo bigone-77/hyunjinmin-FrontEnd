@@ -1,5 +1,6 @@
-import { flexColumn } from '@/styles/flex';
 import { useEffect, useRef, useState } from 'react';
+
+import { flexColumn } from '@/styles/flex';
 
 function TimeTable() {
   const [tdHeight, setTdHeight] = useState(0);

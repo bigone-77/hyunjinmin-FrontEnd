@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
 
-import { flexCenter, flexRowSpaceBetweenCenter } from '@styles/flex';
+import { flexCenter, flexRowSpaceBetweenCenter } from '@/styles/flex';
 
 function Navbar() {
   const [navHeight, setNavHeight] = useState(0);

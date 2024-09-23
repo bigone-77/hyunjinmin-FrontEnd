@@ -1,10 +1,10 @@
 import { Routes as ReactRouters, Route } from 'react-router-dom';
 
-import Navbar from '@shared/Navbar';
+import Navbar from '@/components/shared/Navbar';
 
 import HomePage from '@/pages/Home';
 
-import LoginPage from '@pages/auth/Login';
+import LoginPage from '@/pages/auth/Login';
 
 function Routes() {
   return (
