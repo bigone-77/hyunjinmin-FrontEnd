@@ -2,9 +2,9 @@ import { Routes as ReactRouters, Route } from 'react-router-dom';
 
 import Navbar from '@shared/Navbar';
 
-import HomePage from '@/pages/home';
+import HomePage from '@pages/home';
 
-import LoginPage from '@/pages/auth/Login';
+import LoginPage from '@pages/auth/Login';
 
 function Routes() {
   return (

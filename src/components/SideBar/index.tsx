@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 import Spacing from '@shared/Spacing';
-import Section from '@/components/sideBar/Section';
+import Section from './Section';
 
 const sideTabVariants = {
   open: { width: 250 },
