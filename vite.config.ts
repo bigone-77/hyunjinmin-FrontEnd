@@ -8,6 +8,16 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      devOptions: { enabled: true },
+      includeAssets: [
+        'favicon.ico',
+        'logo.svg',
+        'pwa-64x64.png',
+        'pwa-192x192.png',
+        'pwa-512x512.png',
+        'maskable-icon-512x512.png',
+        'apple-touch-icon-180x180.png',
+      ],
       manifest: {
         name: '현진민', // 설치 배너에 표시되는 이름
         short_name: '현진민', // 아이콘 아래에 표시될 이름
