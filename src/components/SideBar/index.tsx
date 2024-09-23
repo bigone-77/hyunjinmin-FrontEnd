@@ -13,7 +13,7 @@ const contentVariants = {
   closed: { opacity: 0, transition: { duration: 0.3 } },
 };
 
-export default function SideBar() {
+function SideBar() {
   return (
     <motion.aside
       className='fixed top-0 left-0 h-full bg-secondary shadow-lg z-[9999]'
@@ -49,3 +49,5 @@ export default function SideBar() {
     </motion.aside>
   );
 }
+
+export default SideBar;

@@ -3,7 +3,7 @@ import Banner from '@shared/Banner';
 import Button from '@shared/Button';
 import TimeTable from '@shared/TimeTable';
 
-function MainPage() {
+function HomePage() {
   return (
     <div className='pb-6 overflow-hidden'>
       <Banner />
@@ -36,4 +36,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default HomePage;
