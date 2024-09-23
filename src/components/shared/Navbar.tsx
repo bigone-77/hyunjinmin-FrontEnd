@@ -5,7 +5,7 @@ import { AnimatePresence, useCycle } from 'framer-motion';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 import { flexCenter, flexRowSpaceBetweenCenter } from '@styles/flex';
-import SideBar from '@/components/SideBar';
+import SideBar from '@/components/sideBar';
 
 function Navbar() {
   const [open, cycleOpen] = useCycle(false, true);

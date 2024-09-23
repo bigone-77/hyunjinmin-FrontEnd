@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#6439FF',
+        primary: 'rgba(54, 102, 221, 1)',
         secondary: '#4F75FF',
         sub: '#00CCDD',
         red: '#f44336',
