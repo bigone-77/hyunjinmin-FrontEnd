@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: 'rgba(54, 102, 221, 1)',
+        primary: '#392AAB',
         secondary: '#4F75FF',
         sub: '#00CCDD',
         red: '#f44336',
@@ -12,9 +12,11 @@ export default {
         yellow: '#E8B86D',
         green: '#4caf50',
         blue: '#2196f3',
-        white: '#fff',
-        black: '#212121',
-        grey: 'rgba(159, 159, 159, 1)',
+        pink: '#FFD0CA',
+        white: '#F5F5F5',
+        black: '#121212',
+        grey50: '#ABABAB',
+        grey100: '#6E6E6E',
       },
       zIndex: {
         dimmed: '10',

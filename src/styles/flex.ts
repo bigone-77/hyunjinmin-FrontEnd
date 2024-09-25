@@ -1,5 +1,4 @@
-export const flexRowSpaceBetweenCenter =
-  'flex justify-between items-center text-base';
+export const flexRowSpaceBetweenCenter = 'flex justify-between items-center';
 
 export const flexCenter = 'flex items-center justify-center';
 

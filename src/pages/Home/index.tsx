@@ -1,12 +1,7 @@
-import Spacing from '@/components/shared/Spacing';
-import Banner from '@/components/shared/Banner';
-import Button from '@/components/shared/Button';
-import TimeTable from '@/components/shared/TimeTable';
-
 function HomePage() {
   return (
     <div className='pb-6 overflow-hidden'>
-      <Banner />
+      {/* <Banner />
       <main className='px-4 pt-6'>
         <Button.Group>
           <Button theme='secondary' onClick={() => {}} isGroup>
@@ -31,7 +26,7 @@ function HomePage() {
             직접 추가
           </Button>
         </Button.Group>
-      </main>
+      </main> */}
     </div>
   );
 }

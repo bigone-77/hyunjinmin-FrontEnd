@@ -1,6 +1,6 @@
 import { Routes as ReactRouters, Route } from 'react-router-dom';
 
-import Navbar from '@/components/shared/Navbar';
+import Layout from '@/layout';
 
 import HomePage from '@/pages/Home';
 
@@ -9,7 +9,7 @@ import LoginPage from '@/pages/auth/Login';
 function Routes() {
   return (
     <ReactRouters>
-      <Route path='/' element={<Navbar />}>
+      <Route path='/' element={<Layout />}>
         <Route index element={<HomePage />} />
       </Route>
 
