@@ -8,7 +8,7 @@ function Layout() {
     <div className='relative'>
       <Header />
       <Outlet />
-      <div className='w-full max-w-[500px] fixed left-0 right-0 bottom-10 px-6'>
+      <div className='w-full max-w-[500px] fixed left-0 right-0 bottom-0 px-6'>
         <Footer />
       </div>
     </div>

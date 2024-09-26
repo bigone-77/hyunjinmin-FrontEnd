@@ -8,6 +8,7 @@ import {
 import { LuUser2 } from 'react-icons/lu';
 
 import FooterSection from '@/layout/Footer/Section';
+import FloatingButton from '@/components/shared/FloatingButton';
 
 function Footer() {
   const ICONS = useMemo(
@@ -37,10 +38,13 @@ function Footer() {
   );
 
   return (
-    <footer className='grid grid-cols-4 py-6 place-items-center rounded-3xl bg-pink'>
+    <footer className='relative grid grid-cols-4 py-6 place-items-center rounded-t-3xl bg-pink'>
       {ICONS.map((icon) => (
         <FooterSection key={icon.id} icon={icon.icon} url={icon.url} />
       ))}
+      <div className='absolute right-8 -top-20'>
+        <FloatingButton />
+      </div>
     </footer>
   );
 }

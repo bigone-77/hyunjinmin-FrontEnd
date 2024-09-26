@@ -1,23 +1,39 @@
-import { flexColumn } from '@/styles/flex';
+import { MdOutlineAlternateEmail } from 'react-icons/md';
+import { IoLockClosedOutline } from 'react-icons/io5';
+
+import loginBg from '@/assets/svgs/bg-login.svg';
+import TextInput from '@/components/shared/TextInput';
 import Spacing from '@/components/shared/Spacing';
+import Button from '@/components/shared/Button';
 
 function LoginPage() {
   return (
-    <div className={`${flexColumn} items-center justify-center`}>
-      <Spacing size={75} />
+    <div className='pt-10'>
+      <img src={loginBg} alt='login-bg' className='mx-auto' />
 
-      <span className='flex text-2xl font-semibold gap-x-4 text-primary'>
-        <p>현진민 학원</p> |<p>포탈</p>
-      </span>
+      <div className='my-8'>
+        <p className='text-2xl text-black'>로그인</p>
 
-      <Spacing size={20} />
+        <Spacing size={12} />
 
-      <section className='w-full rounded-[40px] shadow-lg shadow-primary p-10'>
-        <span className='flex gap-x-20 text-grey'>
-          <p>학생</p>
-          <p>교사(관리인)</p>
-        </span>
-      </section>
+        <TextInput icon={MdOutlineAlternateEmail} placeholder='이메일' />
+
+        <Spacing size={16} />
+
+        <TextInput icon={IoLockClosedOutline} placeholder='비밀번호' />
+
+        <Spacing size={10} />
+
+        <p className='font-semibold text-primary text-end'>
+          비밀번호를 잊으셨나요?
+        </p>
+
+        <Spacing size={10} />
+
+        <Button theme='login' onClick={() => {}}>
+          로그인
+        </Button>
+      </div>
     </div>
   );
 }

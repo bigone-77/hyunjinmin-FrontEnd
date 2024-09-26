@@ -8,10 +8,10 @@ interface PrimaryButtonProps {
   onClick: () => void;
 }
 
-const primary = 'bg-primary text-white rounded-lg';
-const secondary = 'bg-secondary text-white rounded-lg';
-const sub = 'bg-sub text-white rounded-lg';
-const login = 'text-white';
+const primary = 'bg-primary text-white';
+const secondary = 'bg-secondary text-white';
+const sub = 'bg-sub text-white';
+const login = 'bg-primary text-white font-bold w-full';
 const disabledStyle = 'disabled:bg-mono100 disabled:text-mono200';
 
 const color: Record<ButtonTheme, string> = {
@@ -32,6 +32,7 @@ function BaseButton({
     <button
       className={`
         ${isGroup && 'flex-1'}
+        rounded-lg
         text-center
         text-base
         h-[59px]

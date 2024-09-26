@@ -4,7 +4,7 @@ import { mobilScreen } from '@/styles/screen';
 
 function App() {
   return (
-    <div className={`${mobilScreen} bg-white`}>
+    <div className={`${mobilScreen}`}>
       <Routes />
     </div>
   );

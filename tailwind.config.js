@@ -5,13 +5,13 @@ export default {
     extend: {
       colors: {
         primary: '#392AAB',
-        secondary: '#4F75FF',
-        sub: '#00CCDD',
+        secondary: '#E87A30',
+        sub: '#1f2937',
         red: '#f44336',
         orange: '#FF6600',
         yellow: '#E8B86D',
-        green: '#4caf50',
-        blue: '#2196f3',
+        green: '#5DAD6E',
+        blue: '#41A3FE',
         pink: '#FFD0CA',
         white: '#F5F5F5',
         black: '#121212',
