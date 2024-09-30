@@ -1,5 +1,13 @@
+import Routes from '@/router/Routes';
+
+import { mobilScreen } from '@/styles/screen';
+
 function App() {
-  return <div>right branch에서dsf push 할것입니다</div>;
+  return (
+    <div className={`${mobilScreen}`}>
+      <Routes />
+    </div>
+  );
 }
 
 export default App;

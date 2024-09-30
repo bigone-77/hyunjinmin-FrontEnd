@@ -1,10 +1,17 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
+
+import App from '@/App.tsx';
+import { AlertContextProvider } from '@/contexts/AlertContext';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <AlertContextProvider>
+        <App />
+      </AlertContextProvider>
+    </BrowserRouter>
   </StrictMode>,
 );
