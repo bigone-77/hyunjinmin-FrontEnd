@@ -1,5 +1,11 @@
+import TimeTable from '@/components/shared/TimeTable';
+
 function TimeBoardPage() {
-  return <div className='pb-6 overflow-hidden'>시간표페이지</div>;
+  return (
+    <div className='pb-6 overflow-hidden'>
+      <TimeTable />
+    </div>
+  );
 }
 
 export default TimeBoardPage;

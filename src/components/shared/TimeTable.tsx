@@ -1,92 +1,110 @@
-import { useEffect, useRef, useState } from 'react';
-
-import { flexColumn } from '@/styles/flex';
+import { useState } from 'react';
+import ToggleButtons from './Table/ToggleButtons';
+import HeaderRow from './Table/HeaderRow';
+import TimeSlotRow from './Table/TimeSlotRow';
 
 function TimeTable() {
-  const [tdHeight, setTdHeight] = useState(0);
-  const tdRef = useRef<HTMLTableCellElement>(null);
+  const [isWeekend, setIsWeekend] = useState(false);
 
-  useEffect(() => {
-    if (tdRef.current) {
-      setTdHeight(tdRef.current.offsetHeight);
+  const generateTimeSlots = (start: number, end: number) => {
+    const slots = [];
+    for (let hour = start; hour <= end; hour++) {
+      for (let minute = 0; minute < 60; minute += 15) {
+        slots.push(`${hour}:${minute === 0 ? '00' : minute}`);
+      }
     }
-  }, []);
+    return slots;
+  };
 
-  const timeSlots = [10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const days = ['월', '화', '수', '목', '금'];
+  const weekdayTimeSlots = generateTimeSlots(16, 21);
+  const weekendTimeSlots = generateTimeSlots(11, 20);
+
+  const weekDays = ['월', '화', '수', '목', '금'];
+  const weekendDays = ['토', '일'];
+
+  const timeSlots = isWeekend ? weekendTimeSlots : weekdayTimeSlots;
+  const days = isWeekend ? weekendDays : weekDays;
 
   const classes = [
     {
       id: 1,
-      title: '수학의 정석',
-      day: '화',
-      startTime: 12,
-      duration: 3.3,
-      place: '318호',
+      title: '수능특강(정)',
+      day: ['월'],
+      startTime: 19.5,
+      duration: 2.5,
+      place: '1강의실',
       bgColor: 'orange',
     },
     {
       id: 2,
-      title: '국어의 정석',
-      day: '목',
-      startTime: 1,
+      title: '영어(J)',
+      day: ['수'],
+      startTime: 17,
+      duration: 3,
+      place: '5강의실',
+      bgColor: 'green',
+    },
+    {
+      id: 3,
+      title: '국어(김)',
+      day: ['금'],
+      startTime: 20,
       duration: 2,
-      place: '316호',
+      place: '5강의실',
+      bgColor: 'green',
+    },
+    {
+      id: 4,
+      title: '영어(L)',
+      day: ['토'],
+      startTime: 14,
+      duration: 3,
+      place: '5강의실',
+      bgColor: 'green',
+    },
+    {
+      id: 5,
+      title: '국어',
+      day: ['토'],
+      startTime: 18,
+      duration: 2,
+      place: '5강의실',
+      bgColor: 'green',
+    },
+    {
+      id: 6,
+      title: '정시대비',
+      day: ['일'],
+      startTime: 11,
+      duration: 3,
+      place: '5강의실',
       bgColor: 'green',
     },
   ];
 
   return (
-    <div className='w-full overflow-x-auto border rounded-lg shadow-lg'>
-      <table className='min-w-full border border-collapse border-gray-400 rounded-lg table-fixed'>
-        <thead>
-          <tr>
-            <th className='px-4 py-2 border border-gray-300'></th>
-            {days.map((day) => (
-              <th
-                key={day}
-                className='px-4 py-2 font-semibold text-center border border-gray-300'
-              >
-                {day}
-              </th>
+    <div className='p-0'>
+      <ToggleButtons isWeekend={isWeekend} setIsWeekend={setIsWeekend} />
+      <div
+        style={{ maxHeight: '600px', overflowY: 'auto' }}
+        className='border-gray-300 rounded-xl'
+      >
+        <table className='min-w-full border border-gray-300'>
+          <HeaderRow days={days} isWeekend={isWeekend} />
+          <tbody>
+            {timeSlots.map((time, slotIndex) => (
+              <TimeSlotRow
+                key={time}
+                time={time}
+                slotIndex={slotIndex}
+                timeSlots={timeSlots}
+                classes={classes}
+                days={days}
+              />
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {timeSlots.map((time, timeIndex) => (
-            <tr key={`time-${time}-${timeIndex}`}>
-              <td className='px-4 py-2 text-center border border-gray-300 text-grey'>
-                {time}
-              </td>
-              {days.map((day, dayIndex) => {
-                const course = classes.find(
-                  (c) => c.day === day && c.startTime === time,
-                );
-                return (
-                  <td
-                    key={`${day}-${timeIndex}-${dayIndex}`}
-                    className='relative px-4 py-2 border border-gray-300'
-                    ref={tdRef} // td 요소에 ref 연결
-                  >
-                    {course && (
-                      <div
-                        className={`${flexColumn} gap-2 absolute top-0 left-0 w-full p-2 text-center text-white`}
-                        style={{
-                          backgroundColor: course.bgColor,
-                          height: `${tdHeight * course.duration}px`,
-                        }}
-                      >
-                        <h1>{course.title}</h1>
-                        <h2>{course.place}</h2>
-                      </div>
-                    )}
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

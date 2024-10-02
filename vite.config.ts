@@ -21,7 +21,7 @@ export default defineConfig({
       manifest: {
         name: '현진민', // 설치 배너에 표시되는 이름
         short_name: '현진민', // 아이콘 아래에 표시될 이름
-        description: '현진민 | 학원',
+        description: '현진 | 학원',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         lang: 'ko',
