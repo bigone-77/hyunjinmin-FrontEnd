@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PopUp from './PopUp';
-
+import { formatTime24to12 } from './Utils/TimeUtils';
 interface ClassCellProps {
   currentClass: any;
   timeSlots: string[];
@@ -8,13 +8,6 @@ interface ClassCellProps {
   minute: string;
   day: string;
 }
-
-const formatTime24to12 = (hour: number, minute: number): string => {
-  const ampm = hour >= 12 ? '오후' : '오전';
-  const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
-  const formattedMinute = minute === 0 ? '' : `${minute}분`; // 00분일 경우 생략
-  return `${ampm} ${formattedHour}시 ${formattedMinute}`.trim();
-};
 
 const ClassCell = ({
   currentClass,

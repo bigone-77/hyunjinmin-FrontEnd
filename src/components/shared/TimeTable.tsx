@@ -33,7 +33,7 @@ function TimeTable() {
       startTime: 19.5,
       duration: 2.5,
       place: '1강의실',
-      bgColor: 'orange',
+      bgColor: '#FF5733', // 수능특강(정) - 주황색
     },
     {
       id: 2,
@@ -42,7 +42,7 @@ function TimeTable() {
       startTime: 17,
       duration: 3,
       place: '5강의실',
-      bgColor: 'green',
+      bgColor: '#3498DB', // 영어(J) - 파란색
     },
     {
       id: 3,
@@ -51,7 +51,7 @@ function TimeTable() {
       startTime: 20,
       duration: 2,
       place: '5강의실',
-      bgColor: 'green',
+      bgColor: '#2ECC71', // 국어(김) - 녹색
     },
     {
       id: 4,
@@ -60,7 +60,7 @@ function TimeTable() {
       startTime: 14,
       duration: 3,
       place: '5강의실',
-      bgColor: 'green',
+      bgColor: '#9B59B6', // 영어(L) - 보라색
     },
     {
       id: 5,
@@ -69,7 +69,7 @@ function TimeTable() {
       startTime: 18,
       duration: 2,
       place: '5강의실',
-      bgColor: 'green',
+      bgColor: '#E74C3C', // 국어 - 빨간색
     },
     {
       id: 6,
@@ -78,7 +78,7 @@ function TimeTable() {
       startTime: 11,
       duration: 3,
       place: '5강의실',
-      bgColor: 'green',
+      bgColor: '#F1C40F', // 정시대비 - 노란색
     },
   ];
 

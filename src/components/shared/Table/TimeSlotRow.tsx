@@ -1,4 +1,5 @@
 import ClassCell from './ClassCell';
+import { formatTime24 } from './Utils/TimeUtils';
 
 interface TimeSlotRowProps {
   time: string;
@@ -19,12 +20,6 @@ const TimeSlotRow = ({
   const hour = parseInt(timeParts[0]);
   const minute = timeParts[1];
   const fullTime = hour + parseInt(minute) / 60;
-
-  const formatTime24 = (hour: number, minute: string) => {
-    const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
-    const formattedMinute = minute === '00' ? '' : `${minute}분`;
-    return `${formattedHour}시 ${formattedMinute}`.trim();
-  };
 
   return (
     <tr key={time} style={{ height: '25px' }}>
