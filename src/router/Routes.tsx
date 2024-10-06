@@ -8,6 +8,7 @@ import HomePage from '@/pages/Home';
 import TimeBoardPage from '@/pages/TimeBoard';
 import BoardPage from '@/pages/Board';
 import ProfilePage from '@/pages/Profile';
+import PostPage from '@/pages/Post';
 
 function Routes() {
   return (
@@ -20,6 +21,7 @@ function Routes() {
         <Route index element={<HomePage />} />
         <Route path='timeBoard' element={<TimeBoardPage />} />
         <Route path='board' element={<BoardPage />} />
+        <Route path='/post/:id' element={<PostPage />} />
         <Route path='profile' element={<ProfilePage />} />
       </Route>
     </ReactRouters>
