@@ -1,4 +1,4 @@
-import Board from '@/components/shared/Board/Board';
+import Board from '@/components/Board/Board';
 
 function BoardPage() {
   return (
