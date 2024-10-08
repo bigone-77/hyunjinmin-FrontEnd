@@ -1,8 +1,8 @@
-import TimeTable from '@/components/shared/TimeTable';
+import TimeTable from '@/components/Table/TimeTable';
 
 function TimeBoardPage() {
   return (
-    <div className='pb-6 overflow-hidden'>
+    <div className='flex flex-col'>
       <TimeTable />
     </div>
   );

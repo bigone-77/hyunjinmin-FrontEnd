@@ -51,7 +51,8 @@ const RAW_RUNTIME_STATE =
           ["typescript", "patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=379a07"],\
           ["typescript-eslint", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:8.4.0"],\
           ["vite", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:5.4.3"],\
-          ["vite-plugin-pwa", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:0.20.5"]\
+          ["vite-plugin-pwa", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:0.20.5"],\
+          ["workbox-build", "npm:7.1.1"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -85,7 +86,8 @@ const RAW_RUNTIME_STATE =
           ["typescript", "patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=379a07"],\
           ["typescript-eslint", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:8.4.0"],\
           ["vite", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:5.4.3"],\
-          ["vite-plugin-pwa", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:0.20.5"]\
+          ["vite-plugin-pwa", "virtual:172bae04a2282825dbad5e3b95025f59b09212fb4f0d3ecb5263556fc817a06343d7248e674404fe780bca7e7227492009e12bf6eaa097a211b8a8677b765106#npm:0.20.5"],\
+          ["workbox-build", "npm:7.1.1"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -8952,7 +8954,8 @@ const RAW_RUNTIME_STATE =
           "@types/workbox-build",\
           "@types/workbox-window",\
           "@vite-pwa/assets-generator",\
-          "vite"\
+          "vite",\
+          "workbox-build"\
         ],\
         "linkType": "HARD"\
       }]\

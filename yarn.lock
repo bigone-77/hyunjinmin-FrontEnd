@@ -34,6 +34,7 @@ __metadata:
     typescript-eslint: "npm:^8.0.1"
     vite: "npm:^5.4.1"
     vite-plugin-pwa: "npm:^0.20.5"
+    workbox-build: "npm:^7.1.1"
   languageName: unknown
   linkType: soft
 
@@ -6999,7 +7000,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-build@npm:^7.1.0":
+"workbox-build@npm:^7.1.0, workbox-build@npm:^7.1.1":
   version: 7.1.1
   resolution: "workbox-build@npm:7.1.1"
   dependencies:
