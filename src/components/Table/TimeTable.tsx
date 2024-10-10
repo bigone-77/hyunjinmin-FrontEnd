@@ -84,7 +84,6 @@ function TimeTable() {
 
   return (
     <div className='p-0'>
-      <ToggleButtons isWeekend={isWeekend} setIsWeekend={setIsWeekend} />
       <div
         style={{ height: '500px', overflowY: 'auto' }}
         className='border-gray-300 rounded-xl'
@@ -105,6 +104,7 @@ function TimeTable() {
           </tbody>
         </table>
       </div>
+      <ToggleButtons isWeekend={isWeekend} setIsWeekend={setIsWeekend} />
     </div>
   );
 }
