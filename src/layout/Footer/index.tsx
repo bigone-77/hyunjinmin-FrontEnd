@@ -38,7 +38,7 @@ function Footer() {
   );
 
   return (
-    <footer className='relative grid grid-cols-4 py-6 place-items-center rounded-t-3xl bg-pink'>
+    <footer className='relative grid grid-cols-4 w-full py-6 place-items-center bg-pink mx-auto'>
       {ICONS.map((icon) => (
         <FooterSection key={icon.id} icon={icon.icon} url={icon.url} />
       ))}
