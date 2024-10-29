@@ -38,7 +38,7 @@ const initialStudents: Student[] = [
     classes: ['국어', '수학'],
     tuitionFees: 200000,
     feesDay: 1,
-    feesStatus: true,
+    feesStatus: false,
   },
   {
     id: 3,
@@ -54,7 +54,7 @@ const initialStudents: Student[] = [
     classes: ['국어', '수학'],
     tuitionFees: 200000,
     feesDay: 1,
-    feesStatus: true,
+    feesStatus: false,
   },
 ];
 
@@ -90,7 +90,7 @@ function UsersInfoPage() {
     <div className='w-full h-screen flex flex-col'>
       <Header />
       <Lnb />
-      <div className='m-4 p-6 flex-1 bg-gray-200 rounded-xl'>
+      <div className='p-6 flex-1 bg-gray-200 rounded-xl'>
         <div className='flex items-center justify-between mb-4'>
           <h1 className='text-2xl font-bold'>학생 정보 관리</h1>
           <SearchBar

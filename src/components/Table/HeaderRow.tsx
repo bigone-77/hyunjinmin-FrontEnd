@@ -1,9 +1,6 @@
-interface HeaderRowProps {
-  days: string[];
-  isWeekend: boolean;
-}
+import { HeaderRowProps } from '@/components/Table/Utils/TimeTableIF';
 
-const HeaderRow = ({ days, isWeekend }: HeaderRowProps) => {
+function HeaderRow({ days, isWeekend }: HeaderRowProps) {
   return (
     <thead>
       <tr className='bg-gray-200'>
@@ -19,6 +16,6 @@ const HeaderRow = ({ days, isWeekend }: HeaderRowProps) => {
       </tr>
     </thead>
   );
-};
+}
 
 export default HeaderRow;

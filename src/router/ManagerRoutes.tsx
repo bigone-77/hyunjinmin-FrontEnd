@@ -4,7 +4,7 @@ import UsersInfoPage from '@/pages/Manager/UsersInfo';
 import TimeTablePage from '@/pages/Manager/TimeTable';
 import NoticePage from '@/pages/Manager/Notice';
 import PointsPage from '@/pages/Manager/Points';
-import WeekTestPage from '@/pages/Manager/WeekTest';
+import AcceiptingPage from '@/pages/Manager/Accepting';
 
 function ManagerRoutes() {
   return (
@@ -15,7 +15,7 @@ function ManagerRoutes() {
         <Route path='timeTable' element={<TimeTablePage />} />
         <Route path='notice' element={<NoticePage />} />
         <Route path='points' element={<PointsPage />} />
-        <Route path='weekTest' element={<WeekTestPage />} />
+        <Route path='accepting' element={<AcceiptingPage />} />
       </Route>
     </ReactRouters>
   );

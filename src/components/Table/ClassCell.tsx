@@ -1,20 +1,13 @@
 import { useState } from 'react';
 import PopUp from './PopUp';
+import { ClassCellProps } from '@/components/Table/Utils/TimeTableIF';
 
-interface ClassCellProps {
-  currentClass: any;
-  timeSlots: string[];
-  slotIndex: number;
-  minute: string;
-  day: string;
-}
-
-const ClassCell = ({
+function ClassCell({
   currentClass,
   timeSlots,
   slotIndex,
   minute,
-}: ClassCellProps) => {
+}: ClassCellProps) {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
   if (!currentClass) {
@@ -53,6 +46,6 @@ const ClassCell = ({
       )}
     </td>
   );
-};
+}
 
 export default ClassCell;

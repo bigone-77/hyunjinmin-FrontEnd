@@ -1,15 +1,6 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import BoardToggleButton from '@/components/Board/BoardToggleButton';
-import PostAdd from './PostAdd';
 
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-  author: string;
-  date: string;
-}
+import { Post } from './Utils/BoardIF';
 
 const garaPosts: Post[] = [
   {
@@ -48,60 +39,12 @@ const garaPosts: Post[] = [
     date: '2024-10-02 11:00:00',
   },
 ];
-
-const garaPosts2: Post[] = [
-  {
-    id: 6,
-    author: '홍길동',
-    title: '첫 번째 자유게시판 글',
-    content: '첫 번째 자유게시판 글의 내용입니다.',
-    date: '2024-10-01 12:00:00',
-  },
-  {
-    id: 7,
-    author: '김길동',
-    title: '두 번째 자유게시판 글',
-    content: '두 번째 자유게시판 글의 내용입니다.',
-    date: '2024-10-01 12:00:00',
-  },
-  {
-    id: 8,
-    author: '박길동',
-    title: '세 번째 자유게시판 글',
-    content: '세 번째 자유게시판 글의 내용입니다.',
-    date: '2024-10-01 12:00:00',
-  },
-  {
-    id: 9,
-    author: '이길동',
-    title: '네 번째 자유게시판 글',
-    content: '네 번째 자유게시판 글의 내용입니다.',
-    date: '2024-10-02 10:00:00',
-  },
-  {
-    id: 10,
-    author: '최길동',
-    title: '다섯 번째 자유게시판 글',
-    content: '다섯 번째 자유게시판 글의 내용입니다.',
-    date: '2024-10-02 11:00:00',
-  },
-];
-
-const BoardPage = () => {
-  const [isNotice, setIsNotice] = useState(true);
-  const [freePosts, setFreePosts] = useState(garaPosts2);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const addPost = (newPost: Post) => {
-    setFreePosts([...freePosts, newPost]);
-  };
-
-  const posts = isNotice ? garaPosts : freePosts;
+function BoardPage() {
+  const posts = garaPosts;
 
   return (
     <div className='container mx-auto p-4'>
-      <h1 className='text-2xl font-bold mb-4 text-center'>공지/자유 게시판</h1>
-      <BoardToggleButton isNotice={isNotice} setIsNotice={setIsNotice} />
+      <h1 className='text-2xl font-bold mb-4 text-center'>공지사항</h1>
       {/* 게시물 목록 */}
       <div className='space-y-4 h-[58vh] overflow-y-auto'>
         {posts.map((post) => (
@@ -129,23 +72,8 @@ const BoardPage = () => {
           </Link>
         ))}
       </div>
-      {/* 글쓰기 버튼 (자유 게시판일 때만 나타나도록 설정) */}
-      {!isNotice && (
-        <div className='fixed bottom-24 left-1/2 transform -translate-x-1/2'>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className='bg-gray-300 text-black px-4 py-2 rounded-xl hover:bg-blue-600 opacity-75' // 반투명 효과 추가
-          >
-            글쓰기
-          </button>
-        </div>
-      )}
-      {/* PostAdd 모달 (자유게시판에서만 글쓰기 가능) */}
-      {isModalOpen && (
-        <PostAdd onClose={() => setIsModalOpen(false)} addPost={addPost} />
-      )}
     </div>
   );
-};
+}
 
 export default BoardPage;
