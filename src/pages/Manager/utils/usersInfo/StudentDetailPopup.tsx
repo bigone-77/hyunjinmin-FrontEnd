@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import TableRow from '@/pages/Manager/utils/usersInfo/TableRow';
 
 interface DetailStudent {
@@ -24,6 +25,13 @@ interface PopUpProps {
 
 function StudentDetailPopUp({ student, onClose }: PopUpProps) {
   if (!student) return null;
+
+  const [feesStatus, setFeesStatus] = useState(student.feesStatus); // 납부 상태를 상태로 관리
+
+  const handlePaymentCompletion = () => {
+    setFeesStatus(true); // 납부 완료로 상태 변경
+  };
+
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center'>
       <div className='bg-white p-8 rounded-lg shadow-lg w-[600px]'>
@@ -50,7 +58,7 @@ function StudentDetailPopUp({ student, onClose }: PopUpProps) {
             <TableRow
               label='원비 납부 여부'
               value={
-                student.feesStatus ? (
+                feesStatus ? (
                   <span className='text-blue'>납부 완료</span>
                 ) : (
                   <span className='text-red'>납부 미완료</span>
@@ -59,10 +67,22 @@ function StudentDetailPopUp({ student, onClose }: PopUpProps) {
             />
           </tbody>
         </table>
+
+        {!feesStatus && (
+          <div className='flex justify-center mb-4'>
+            <button
+              onClick={handlePaymentCompletion}
+              className='px-6 py-2 bg-green text-white rounded-lg hover:bg-green transition-colors duration-200'
+            >
+              납부 완료
+            </button>
+          </div>
+        )}
+
         <div className='flex justify-center'>
           <button
             onClick={onClose}
-            className='px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors duration-200'
+            className='px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray transition-colors duration-200'
           >
             닫기
           </button>

@@ -1,26 +1,18 @@
 import ClassCell from './ClassCell';
 import { formatTime24 } from './Utils/TimeUtils';
+import { TimeSlotRowProps } from './Utils/TimeTableIF';
 
-interface TimeSlotRowProps {
-  time: string;
-  slotIndex: number;
-  timeSlots: string[];
-  classes: any[];
-  days: string[];
-}
-
-const TimeSlotRow = ({
+function TimeSlotRow({
   time,
   slotIndex,
   timeSlots,
   classes,
   days,
-}: TimeSlotRowProps) => {
+}: TimeSlotRowProps) {
   const timeParts = time.split(':');
   const hour = parseInt(timeParts[0]);
   const minute = timeParts[1];
   const fullTime = hour + parseInt(minute) / 60;
-
   return (
     <tr key={time} style={{ height: '25px' }}>
       <td
@@ -51,6 +43,6 @@ const TimeSlotRow = ({
       })}
     </tr>
   );
-};
+}
 
 export default TimeSlotRow;

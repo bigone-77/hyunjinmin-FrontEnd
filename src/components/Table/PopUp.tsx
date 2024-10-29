@@ -1,11 +1,7 @@
 import { formatTime24to12, formatDuration } from './Utils/TimeUtils';
+import { PopUpProps } from './Utils/TimeTableIF';
 
-interface PopUpProps {
-  classInfo: any;
-  onClose: () => void;
-}
-
-const PopUp = ({ classInfo, onClose }: PopUpProps) => {
+function PopUp({ classInfo, onClose }: PopUpProps) {
   if (!classInfo) return null;
 
   const startTimeFormatted = formatTime24to12(
@@ -40,6 +36,6 @@ const PopUp = ({ classInfo, onClose }: PopUpProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default PopUp;

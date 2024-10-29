@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 interface SearchBarProps {
   searchName: string;
@@ -10,7 +10,7 @@ interface SearchBarProps {
   handleSearch: () => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({
+function SearchBar({
   searchName,
   setSearchName,
   searchAge,
@@ -18,7 +18,19 @@ const SearchBar: React.FC<SearchBarProps> = ({
   searchSchool,
   setSearchSchool,
   handleSearch,
-}) => {
+}: SearchBarProps) {
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchName(e.target.value);
+  };
+
+  const handleAgeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchAge(e.target.value);
+  };
+
+  const handleSchoolChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchSchool(e.target.value);
+  };
+
   return (
     <div className='flex space-x-4'>
       <input
@@ -26,21 +38,21 @@ const SearchBar: React.FC<SearchBarProps> = ({
         placeholder='이름으로 검색'
         className='px-2 py-1 border border-gray-300 rounded'
         value={searchName}
-        onChange={(e) => setSearchName(e.target.value)}
+        onChange={handleNameChange}
       />
       <input
         type='text'
         placeholder='나이로 검색'
         className='px-2 py-1 border border-gray-300 rounded'
         value={searchAge}
-        onChange={(e) => setSearchAge(e.target.value)}
+        onChange={handleAgeChange}
       />
       <input
         type='text'
         placeholder='학교로 검색'
         className='px-2 py-1 border border-gray-300 rounded'
         value={searchSchool}
-        onChange={(e) => setSearchSchool(e.target.value)}
+        onChange={handleSchoolChange}
       />
       <button
         onClick={handleSearch}
@@ -50,6 +62,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
       </button>
     </div>
   );
-};
+}
 
 export default SearchBar;

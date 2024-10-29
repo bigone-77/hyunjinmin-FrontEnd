@@ -1,12 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-  author: string;
-  date: string;
-}
+import { Post } from './BoardIF';
 
 const garaPosts: Post[] = [
   {
@@ -46,45 +40,7 @@ const garaPosts: Post[] = [
   },
 ];
 
-const garaPosts2: Post[] = [
-  {
-    id: 6,
-    author: '홍길동',
-    title: '첫 번째 자유게시판 글',
-    content: '첫 번째 자유게시판 글의 내용입니다.',
-    date: '2024-10-01 12:00:00',
-  },
-  {
-    id: 7,
-    author: '김길동',
-    title: '두 번째 자유게시판 글',
-    content: '두 번째 자유게시판 글의 내용입니다.',
-    date: '2024-10-01 12:00:00',
-  },
-  {
-    id: 8,
-    author: '박길동',
-    title: '세 번째 자유게시판 글',
-    content: '세 번째 자유게시판 글의 내용입니다.',
-    date: '2024-10-01 12:00:00',
-  },
-  {
-    id: 9,
-    author: '이길동',
-    title: '네 번째 자유게시판 글',
-    content: '네 번째 자유게시판 글의 내용입니다.',
-    date: '2024-10-02 10:00:00',
-  },
-  {
-    id: 10,
-    author: '최길동',
-    title: '다섯 번째 자유게시판 글',
-    content: '다섯 번째 자유게시판 글의 내용입니다.',
-    date: '2024-10-02 11:00:00',
-  },
-];
-
-const PostPage = () => {
+function PostPage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
@@ -92,8 +48,7 @@ const PostPage = () => {
     return <div>잘못된 게시물 ID입니다.</div>;
   }
 
-  const allPosts = [...garaPosts, ...garaPosts2];
-  const post = allPosts.find((p) => p.id === parseInt(id));
+  const post = garaPosts.find((p) => p.id === parseInt(id));
 
   if (!post) {
     return <div>게시물을 찾을 수 없습니다.</div>;
@@ -107,7 +62,6 @@ const PostPage = () => {
       <p className='text-gray-700'>{post.content}</p>
 
       <div className='flex justify-end'>
-        {' '}
         <button
           onClick={() => navigate(-1)}
           className='mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700'
@@ -117,6 +71,6 @@ const PostPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default PostPage;

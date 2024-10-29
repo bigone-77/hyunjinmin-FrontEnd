@@ -1,4 +1,4 @@
-import Post from '@/components/Board/Post';
+import Post from '@/components/Board/Utils/Post';
 
 function PostPage() {
   return (
