@@ -8,6 +8,12 @@ function Lnb() {
   return (
     <nav className='w-full bg-gray-800 text-white p-4 flex justify-center shadow-md sticky top-0 z-10'>
       <LnbButton
+        to='/manager/userProv'
+        isSelected={currentPath === '/manager/userProv'}
+      >
+        학생 가입승인
+      </LnbButton>
+      <LnbButton
         to='/manager/usersInfo'
         isSelected={currentPath === '/manager/usersInfo'}
       >
@@ -30,12 +36,6 @@ function Lnb() {
         isSelected={currentPath === '/manager/points'}
       >
         상/벌점 주기
-      </LnbButton>
-      <LnbButton
-        to='/manager/weekTest'
-        isSelected={currentPath === '/manager/weekTest'}
-      >
-        금요평가 성적 입력
       </LnbButton>
     </nav>
   );

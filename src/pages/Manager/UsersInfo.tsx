@@ -3,88 +3,27 @@ import Lnb from '@/pages/Manager/utils/Lnb';
 import SearchBar from '@/pages/Manager/utils/usersInfo/SearchBar';
 import StudentDetailPopUp from '@/pages/Manager/utils/usersInfo/StudentDetailPopup';
 import StudentTable from '@/pages/Manager/utils/usersInfo/StudentTable';
-import { Student } from '@/pages/Manager/utils/types/Student';
+import { Student } from '@/pages/Manager/utils/usersInfo/StudentInter';
 
-import { useState } from 'react';
-
-const initialStudents: Student[] = [
-  {
-    id: 1,
-    name: '김현진',
-    age: 17,
-    school: '서울고등학교',
-    email: 'hjkim@example.com',
-    phone: '010-1234-5678',
-    postalCode: '12345',
-    address: '서울특별시 강남구 테헤란로 123',
-    rewardPoints: 5,
-    penaltyPoints: 2,
-    classes: ['국어', '수학'],
-    tuitionFees: 200000,
-    feesDay: 1,
-    feesStatus: true,
-  },
-  {
-    id: 2,
-    name: '박지민',
-    age: 18,
-    school: '부산고등학교',
-    email: 'jmpark@example.com',
-    phone: '010-9876-5432',
-    postalCode: '67890',
-    address: '부산광역시 해운대구 센텀로 456',
-    rewardPoints: 3,
-    penaltyPoints: 0,
-    classes: ['국어', '수학'],
-    tuitionFees: 200000,
-    feesDay: 1,
-    feesStatus: false,
-  },
-  {
-    id: 3,
-    name: '이수정',
-    age: 16,
-    school: '대구여자고등학교',
-    email: 'sjlee@example.com',
-    phone: '010-1111-2222',
-    postalCode: '54321',
-    address: '대구광역시 중구 중앙대로 789',
-    rewardPoints: 8,
-    penaltyPoints: 1,
-    classes: ['국어', '수학'],
-    tuitionFees: 200000,
-    feesDay: 1,
-    feesStatus: false,
-  },
-];
+import { useEffect, useState } from 'react';
+import {
+  fetchStudents,
+  handleSearch,
+  handleStudentClick,
+  handleClosePopUp,
+} from './utils/usersInfo/StudentFunc';
 
 function UsersInfoPage() {
-  const [students] = useState<Student[]>(initialStudents);
+  const [, setStudents] = useState<Student[]>([]);
   const [searchName, setSearchName] = useState('');
   const [searchAge, setSearchAge] = useState('');
   const [searchSchool, setSearchSchool] = useState('');
-  const [filteredStudents, setFilteredStudents] =
-    useState<Student[]>(initialStudents);
+  const [filteredStudents, setFilteredStudents] = useState<Student[]>([]);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
-  const handleSearch = () => {
-    const newFilteredStudents = students.filter((student) => {
-      return (
-        (searchName === '' || student.name.includes(searchName)) &&
-        (searchAge === '' || student.age.toString() === searchAge) &&
-        (searchSchool === '' || student.school.includes(searchSchool))
-      );
-    });
-    setFilteredStudents(newFilteredStudents);
-  };
-
-  const handleStudentClick = (student: Student) => {
-    setSelectedStudent(student);
-  };
-
-  const handleClosePopUp = () => {
-    setSelectedStudent(null);
-  };
+  useEffect(() => {
+    fetchStudents(setStudents, setFilteredStudents);
+  }, []);
 
   return (
     <div className='w-full h-screen flex flex-col'>
@@ -100,18 +39,20 @@ function UsersInfoPage() {
             setSearchAge={setSearchAge}
             searchSchool={searchSchool}
             setSearchSchool={setSearchSchool}
-            handleSearch={handleSearch}
+            handleSearch={() => handleSearch(searchName, setFilteredStudents)}
           />
         </div>
         <StudentTable
           students={filteredStudents}
-          onStudentClick={handleStudentClick}
+          onStudentClick={(student) =>
+            handleStudentClick(student, setSelectedStudent)
+          }
         />
       </div>
       {selectedStudent && (
         <StudentDetailPopUp
           student={selectedStudent}
-          onClose={handleClosePopUp}
+          onClose={() => handleClosePopUp(setSelectedStudent)}
         />
       )}
     </div>

@@ -1,20 +1,11 @@
-import { Student } from '@/pages/Manager/utils/types/Student';
+import { useState } from 'react';
+import { PointsPopupProps } from './PointsInter';
+import { handleAddReward, handleAddPenalty } from './PointsFunc';
 
-interface PointsPopupProps {
-  isOpen: boolean;
-  student: Student | null;
-  onClose: () => void;
-  onAddReward: () => void;
-  onAddPenalty: () => void;
-}
+function PointsPopup({ isOpen, student, onClose }: PointsPopupProps) {
+  const [rewardScore, setRewardScore] = useState(1); // 기본값은 1
+  const [penaltyScore, setPenaltyScore] = useState(1); // 기본값은 1
 
-function PointsPopup({
-  isOpen,
-  student,
-  onClose,
-  onAddReward,
-  onAddPenalty,
-}: PointsPopupProps) {
   if (!isOpen || !student) return null;
 
   return (
@@ -37,25 +28,57 @@ function PointsPopup({
           <strong>벌점:</strong> {student.penaltyPoints}
         </p>
         <p>
-          <strong>총점:</strong> {student.rewardPoints - student.penaltyPoints}
+          <strong>총점:</strong> {student.totalPoints}
         </p>
-        <div className='flex gap-4 mt-4'>
+        <div className='flex mt-4'>
+          <label className='block mb-2'>
+            상점 점수:
+            <select
+              value={rewardScore}
+              onChange={(e) => setRewardScore(Number(e.target.value))}
+              className='ml-2 p-2 border rounded'
+            >
+              {[1, 2, 3, 4, 5].map((score) => (
+                <option key={`reward-${score}`} value={score}>
+                  {score}점
+                </option>
+              ))}
+            </select>
+          </label>
           <button
-            onClick={onAddReward}
-            className='bg-green text-white p-2 rounded hover:bg-green transition-colors'
+            onClick={() => handleAddReward(student.id, rewardScore)}
+            className='ml-2 bg-positive text-white p-2 rounded hover:bg-positive-hover btn-shadow'
           >
             상점 주기
           </button>
+        </div>
+
+        <div className='flex mt-4'>
+          <label className='block mb-2'>
+            벌점 점수:
+            <select
+              value={penaltyScore}
+              onChange={(e) => setPenaltyScore(Number(e.target.value))}
+              className='ml-2 p-2 border rounded'
+            >
+              {[1, 2, 3, 4, 5].map((score) => (
+                <option key={`penalty-${score}`} value={score}>
+                  {score}점
+                </option>
+              ))}
+            </select>
+          </label>
           <button
-            onClick={onAddPenalty}
-            className='bg-red text-white p-2 rounded hover:bg-red transition-colors'
+            onClick={() => handleAddPenalty(student.id, penaltyScore)}
+            className='ml-2 bg-negative text-white p-2 rounded hover:bg-negative-hover btn-shadow'
           >
             벌점 주기
           </button>
         </div>
+
         <button
           onClick={onClose}
-          className='mt-4 bg-gray-500 text-white p-2 rounded w-full hover:bg-gray-600 transition-colors'
+          className='mt-4 bg-close text-white p-2 rounded w-full hover:bg-close-hover btn-shadow'
         >
           닫기
         </button>

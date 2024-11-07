@@ -37,7 +37,8 @@ function BaseButton({
         text-base
         h-[59px]
         ${disabledStyle} 
-        ${color[theme]}`}
+        ${color[theme]}
+        btn-shadow`}
       disabled={disabled}
       type='button'
       onClick={onClick}

@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require('tailwindcss/plugin');
+
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
@@ -17,6 +20,30 @@ export default {
         black: '#121212',
         grey50: '#ABABAB',
         grey100: '#6E6E6E',
+        positive: {
+          DEFAULT: '#65a30d', //(green)
+          hover: '#4d7c0f',
+        },
+        negative: {
+          DEFAULT: '#dc2626', //(red)
+          hover: '#b91c1c',
+        },
+        close: {
+          DEFAULT: '#92908d', //(gray)
+          hover: '#74716d',
+        },
+        search: {
+          DEFAULT: '#3b82f6', //(blue)
+          hover: '#2563eb',
+        },
+        modify: {
+          DEFAULT: '#fbbf24', //(yellow)
+          hover: '#f59e0b',
+        },
+        save: {
+          DEFAULT: '#22c55e', //(lighter green)
+          hover: '#16a34a',
+        },
       },
       zIndex: {
         dimmed: '10',
@@ -59,5 +86,14 @@ export default {
       ],
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.btn-shadow': {
+          '@apply shadow-md hover:shadow-lg transform transition-transform hover:scale-105 duration-200':
+            {},
+        },
+      });
+    }),
+  ],
 };
