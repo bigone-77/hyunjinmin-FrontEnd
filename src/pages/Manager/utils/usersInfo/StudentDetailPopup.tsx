@@ -1,35 +1,15 @@
 import { useState } from 'react';
 import TableRow from '@/pages/Manager/utils/usersInfo/TableRow';
-
-interface DetailStudent {
-  id: number;
-  name: string;
-  age: number;
-  school: string;
-  email: string;
-  phone: string;
-  postalCode: string;
-  address: string;
-  rewardPoints: number;
-  penaltyPoints: number;
-  classes: string[]; // 듣는 수업
-  tuitionFees: number; // 원비
-  feesDay: number; // 원비 납부 일
-  feesStatus: boolean; // 원비 납부 여부
-}
-
-interface PopUpProps {
-  student: DetailStudent | null;
-  onClose: () => void;
-}
+import { PopUpProps } from './StudentInter';
+import { handlePaymentCompletion, unApproveUser } from './StudentFunc';
 
 function StudentDetailPopUp({ student, onClose }: PopUpProps) {
   if (!student) return null;
 
   const [feesStatus, setFeesStatus] = useState(student.feesStatus); // 납부 상태를 상태로 관리
 
-  const handlePaymentCompletion = () => {
-    setFeesStatus(true); // 납부 완료로 상태 변경
+  const handleUnApprove = () => {
+    unApproveUser(student.id, onClose);
   };
 
   return (
@@ -71,8 +51,8 @@ function StudentDetailPopUp({ student, onClose }: PopUpProps) {
         {!feesStatus && (
           <div className='flex justify-center mb-4'>
             <button
-              onClick={handlePaymentCompletion}
-              className='px-6 py-2 bg-green text-white rounded-lg hover:bg-green transition-colors duration-200'
+              onClick={() => handlePaymentCompletion(setFeesStatus)}
+              className='px-6 py-2 bg-positive text-white rounded-lg hover:bg-positive-hover btn-shadow'
             >
               납부 완료
             </button>
@@ -81,8 +61,16 @@ function StudentDetailPopUp({ student, onClose }: PopUpProps) {
 
         <div className='flex justify-center'>
           <button
+            onClick={handleUnApprove}
+            className='px-6 py-2 bg-negative text-white rounded-lg hover:bg-negative-hover btn-shadow'
+          >
+            권한 회수
+          </button>
+        </div>
+        <div className='flex justify-center mt-2'>
+          <button
             onClick={onClose}
-            className='px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray transition-colors duration-200'
+            className='px-6 py-2 bg-close text-white rounded-lg hover:bg-close-hover btn-shadow'
           >
             닫기
           </button>

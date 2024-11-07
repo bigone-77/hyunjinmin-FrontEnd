@@ -9,12 +9,16 @@ interface ITextInputProps {
   icon?: IconType;
   type?: string;
   placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 function TextInput({
   icon: Icon,
   type = 'text',
   placeholder,
+  value,
+  onChange,
 }: ITextInputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -26,6 +30,8 @@ function TextInput({
           className='w-full pb-[2px] font-light text-grey100 transition border-b border-b-grey100 outline-none'
           type={showPassword ? 'text' : 'password'}
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
         />
         {showPassword ? (
           <IoMdEye
@@ -53,6 +59,8 @@ function TextInput({
         className='w-full pb-[2px] font-light text-grey100 transition border-b border-b-grey100 outline-none'
         type={type}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

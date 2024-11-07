@@ -1,7 +1,4 @@
-interface TableRowProps {
-  label: string;
-  value: React.ReactNode;
-}
+import { TableRowProps } from './StudentInter';
 
 function TableRow({ label, value }: TableRowProps) {
   return (

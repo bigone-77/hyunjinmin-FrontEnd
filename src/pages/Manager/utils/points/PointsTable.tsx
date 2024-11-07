@@ -1,32 +1,13 @@
 import { useState } from 'react';
-import { Student } from '@/pages/Manager/utils/types/Student';
+import { StudentPoints, StudentPointsTableProps } from './PointsInter';
 import PointsPopup from '@/pages/Manager/utils/points/PointsPopup';
-
-interface StudentPointsTableProps {
-  students: Student[];
-}
+import { handleStudentClick, handleClosePopup } from './PointsFunc';
 
 function PointsTable({ students }: StudentPointsTableProps) {
-  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+  const [selectedStudent, setSelectedStudent] = useState<StudentPoints | null>(
+    null,
+  );
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
-
-  const handleStudentClick = (student: Student) => {
-    setSelectedStudent(student);
-    setIsPopupOpen(true);
-  };
-
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
-    setSelectedStudent(null);
-  };
-
-  const handleAddReward = () => {
-    console.log('상점을 추가합니다.');
-  };
-
-  const handleAddPenalty = () => {
-    console.log('벌점을 추가합니다.');
-  };
 
   return (
     <>
@@ -46,27 +27,24 @@ function PointsTable({ students }: StudentPointsTableProps) {
             <tr
               key={student.id}
               className='text-center hover:bg-gray-300 cursor-pointer'
-              onClick={() => handleStudentClick(student)}
+              onClick={() =>
+                handleStudentClick(student, setSelectedStudent, setIsPopupOpen)
+              }
             >
               <td className='py-2 px-4 border-b'>{student.name}</td>
               <td className='py-2 px-4 border-b'>{student.age}</td>
               <td className='py-2 px-4 border-b'>{student.school}</td>
               <td className='py-2 px-4 border-b'>{student.rewardPoints}</td>
               <td className='py-2 px-4 border-b'>{student.penaltyPoints}</td>
-              <td className='py-2 px-4 border-b'>
-                {student.rewardPoints - student.penaltyPoints}
-              </td>
+              <td className='py-2 px-4 border-b'>{student.totalPoints}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      {/* PointsPopup 컴포넌트 사용 */}
       <PointsPopup
         isOpen={isPopupOpen}
         student={selectedStudent}
-        onClose={handleClosePopup}
-        onAddReward={handleAddReward}
-        onAddPenalty={handleAddPenalty}
+        onClose={() => handleClosePopup(setIsPopupOpen, setSelectedStudent)}
       />
     </>
   );

@@ -52,4 +52,14 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
   },
+  server: {
+    proxy: {
+      '/systemMng': {
+        // API 요청 경로를 '/api'로 시작하도록 설정
+        target: 'http://localhost:8080', // 프록시할 서버 주소
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''), // '/api'를 제거하여 실제 API 경로로 전달
+      },
+    },
+  },
 });

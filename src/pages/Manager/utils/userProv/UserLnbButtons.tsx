@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { TabButtonProps } from './StudentInter';
+import { TabButtonProps } from './UserProvInter';
 
-function LnbButton({ to, children, isSelected }: TabButtonProps) {
+function UserLnbButton({ to, children, isSelected }: TabButtonProps) {
   return (
     <Link to={to} className='text-decoration-none'>
       <button
@@ -15,4 +15,4 @@ function LnbButton({ to, children, isSelected }: TabButtonProps) {
   );
 }
 
-export default LnbButton;
+export default UserLnbButton;

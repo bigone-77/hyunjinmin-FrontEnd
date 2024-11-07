@@ -1,9 +1,4 @@
-import { Student } from '@/pages/Manager/utils/types/Student';
-
-interface StudentTableProps {
-  students: Student[];
-  onStudentClick: (student: Student) => void;
-}
+import { StudentTableProps } from './StudentInter';
 
 function StudentTable({ students, onStudentClick }: StudentTableProps) {
   return (

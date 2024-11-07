@@ -1,37 +1,30 @@
 import { useState, useEffect } from 'react';
+import { handleSaveNotice } from './NoticeFunc';
+import { NoticeEditPopupProps } from './NoticeInter';
 
-interface EditNoticePopupProps {
-  isOpen: boolean;
-  notice: { id: number; title: string; content: string } | null;
-  onClose: () => void;
-  onSave: (updatedNotice: {
-    id: number;
-    title: string;
-    content: string;
-  }) => void;
-}
-
-function EditNoticePopup({
+function NoticeEditPopup({
   isOpen,
   notice,
   onClose,
   onSave,
-}: EditNoticePopupProps) {
+}: NoticeEditPopupProps) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (notice) {
-      setTitle(notice.title);
-      setContent(notice.content);
+      setTitle(notice.NOTICE_SUBJ);
+      setContent(notice.NOTICE_CONT);
     }
   }, [notice]);
 
   if (!isOpen || !notice) return null;
 
   const handleSave = () => {
-    onSave({ id: notice.id, title, content });
-    onClose();
+    if (notice) {
+      handleSaveNotice(notice, title, content, setError, onSave, onClose);
+    }
   };
 
   return (
@@ -52,15 +45,16 @@ function EditNoticePopup({
             onChange={(e) => setContent(e.target.value)}
             className='border p-2 rounded w-full h-24'
           />
+          {error && <p className='text-red-500 mt-2'>{error}</p>}
           <button
             onClick={handleSave}
-            className='bg-blue text-white p-2 rounded w-full'
+            className='bg-save text-white p-2 rounded w-full hover:bg-save-hover btn-shadow'
           >
             저장
           </button>
           <button
             onClick={onClose}
-            className='mt-2 bg-red text-white p-2 rounded w-full'
+            className='mt-2 bg-close text-white p-2 rounded w-full hover:bg-close-hover btn-shadow'
           >
             닫기
           </button>
@@ -70,4 +64,4 @@ function EditNoticePopup({
   );
 }
 
-export default EditNoticePopup;
+export default NoticeEditPopup;

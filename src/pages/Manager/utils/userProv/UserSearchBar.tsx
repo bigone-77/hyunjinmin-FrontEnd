@@ -1,11 +1,7 @@
-import { SearchBarProps } from './StudentInter';
-import {
-  handleNameChange,
-  handleAgeChange,
-  handleSchoolChange,
-} from './StudentFunc';
+import { UserSearchBarProps } from './UserProvInter';
+import { handleInputChange } from './UserProvFunc';
 
-function SearchBar({
+function UserSearchBar({
   searchName,
   setSearchName,
   searchAge,
@@ -13,7 +9,7 @@ function SearchBar({
   searchSchool,
   setSearchSchool,
   handleSearch,
-}: SearchBarProps) {
+}: UserSearchBarProps) {
   return (
     <div className='flex space-x-4'>
       <input
@@ -21,21 +17,21 @@ function SearchBar({
         placeholder='이름으로 검색'
         className='px-2 py-1 border border-gray-300 rounded'
         value={searchName}
-        onChange={handleNameChange(setSearchName)}
+        onChange={handleInputChange(setSearchName)}
       />
       <input
         type='text'
         placeholder='나이로 검색'
         className='px-2 py-1 border border-gray-300 rounded'
         value={searchAge}
-        onChange={handleAgeChange(setSearchAge)}
+        onChange={handleInputChange(setSearchAge)}
       />
       <input
         type='text'
         placeholder='학교로 검색'
         className='px-2 py-1 border border-gray-300 rounded'
         value={searchSchool}
-        onChange={handleSchoolChange(setSearchSchool)}
+        onChange={handleInputChange(setSearchSchool)}
       />
       <button
         onClick={handleSearch}
@@ -47,4 +43,4 @@ function SearchBar({
   );
 }
 
-export default SearchBar;
+export default UserSearchBar;
