@@ -1,15 +1,22 @@
 import { useState } from 'react';
 import TableRow from '@/pages/Manager/utils/usersInfo/TableRow';
+import PayDatePopup from '@/pages/Manager/utils/usersInfo/PayDatePopup';
 import { PopUpProps } from './StudentInter';
 import { handlePaymentCompletion, unApproveUser } from './StudentFunc';
 
 function StudentDetailPopUp({ student, onClose }: PopUpProps) {
   if (!student) return null;
-
+  const [showPayDatePopup, setShowPayDatePopup] = useState(false); // PayDatePopup 표시 상태
+  const [feesDay, setFeesDay] = useState(student.feesDay); // 원비 납부일 상태
   const [feesStatus, setFeesStatus] = useState(student.feesStatus); // 납부 상태를 상태로 관리
 
   const handleUnApprove = () => {
     unApproveUser(student.id, onClose);
+  };
+
+  const handlePayDateChange = (selectedDay: number) => {
+    setFeesDay(selectedDay);
+    setShowPayDatePopup(false);
   };
 
   return (
@@ -34,7 +41,20 @@ function StudentDetailPopUp({ student, onClose }: PopUpProps) {
             />
             <TableRow label='듣는 수업' value={student.classes.join(', ')} />
             <TableRow label='원비' value={`${student.tuitionFees} 원`} />
-            <TableRow label='원비 납부일' value={`${student.feesDay}일`} />
+            <TableRow
+              label='원비 납부일'
+              value={
+                <>
+                  {`${feesDay}일 `}
+                  <button
+                    onClick={() => setShowPayDatePopup(true)}
+                    className='px-2 py-1 bg-modify text-white rounded ml-2 hover:bg-modify-hover btn-shadow'
+                  >
+                    납부일 변경
+                  </button>
+                </>
+              }
+            />
             <TableRow
               label='원비 납부 여부'
               value={
@@ -76,6 +96,13 @@ function StudentDetailPopUp({ student, onClose }: PopUpProps) {
           </button>
         </div>
       </div>
+      {showPayDatePopup && (
+        <PayDatePopup
+          currentDay={feesDay}
+          onClose={() => setShowPayDatePopup(false)}
+          onSelectDay={handlePayDateChange}
+        />
+      )}
     </div>
   );
 }

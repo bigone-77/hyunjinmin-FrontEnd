@@ -19,6 +19,19 @@ export interface ClassData {
   classDate: string[];
 }
 
+export interface SearchBarProps {
+  schoolLevel: string;
+  schoolName: string;
+  grade: string;
+  setSchoolLevel: (value: string) => void;
+  setSchoolName: (value: string) => void;
+  setGrade: (value: string) => void;
+  isSearchDisabled: boolean;
+  selectedResult: string; // 선택된 검색 결과
+  setSelectedResult: (value: string) => void;
+  onResultSelect: () => void; // 조회 버튼 클릭 시 동작
+}
+
 export interface TimeSlotRowProps {
   time: string;
   slotIndex: number;

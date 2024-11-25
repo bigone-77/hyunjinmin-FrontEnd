@@ -9,6 +9,7 @@ export interface Student {
   address: string;
   rewardPoints: number;
   penaltyPoints: number;
+  totalPoints: number;
   classes: string[]; // 듣는 수업
   tuitionFees: number; // 원비
   feesDay: number; // 원비 납부 일

@@ -10,7 +10,7 @@ export const fetchNotices = async (
 
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/auth/Login';
+    window.location.href = '/manager/auth/adminLogin';
     return Promise.reject(new Error('No access token found.'));
   }
 
@@ -30,7 +30,7 @@ export const fetchNotices = async (
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/auth/Login';
+        window.location.href = '/manager/auth/adminLogin';
       }
       throw new Error(response.data.msg || '공지사항을 불러오지 못했습니다.');
     }
@@ -46,7 +46,7 @@ export const deleteNotice = async (noticeId: number): Promise<void> => {
 
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/auth/Login';
+    window.location.href = '/manager/auth/adminLogin';
     return Promise.reject(new Error('No access token found.'));
   }
 
@@ -64,7 +64,7 @@ export const deleteNotice = async (noticeId: number): Promise<void> => {
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/auth/Login';
+        window.location.href = '/manager/auth/adminLogin';
       }
       throw new Error(response.data.msg || '삭제에 실패했습니다.');
     }
@@ -80,7 +80,7 @@ export const updateNotice = async (updatedNotice: Notice): Promise<void> => {
 
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/auth/Login';
+    window.location.href = '/manager/auth/adminLogin';
     return Promise.reject(new Error('No access token found.'));
   }
 
@@ -102,7 +102,7 @@ export const updateNotice = async (updatedNotice: Notice): Promise<void> => {
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/auth/Login';
+        window.location.href = '/manager/auth/adminLogin';
       }
       throw new Error(response.data.msg || '수정에 실패했습니다.');
     }
@@ -123,7 +123,7 @@ export const submitNewNotice = async (
 
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/auth/Login';
+    window.location.href = '/manager/auth/adminLogin';
     return Promise.reject(new Error('No access token found.'));
   }
   try {
@@ -147,7 +147,7 @@ export const submitNewNotice = async (
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/auth/Login';
+        window.location.href = '/manager/auth/adminLogin';
       }
       setMessage(response.data.msg || '공지사항 추가에 실패했습니다.');
     }
@@ -167,7 +167,7 @@ export const fetchNoticeDetail = async (
 
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/auth/Login';
+    window.location.href = '/manager/auth/adminLogin';
     return Promise.reject(new Error('No access token found.'));
   }
   try {
@@ -187,7 +187,7 @@ export const fetchNoticeDetail = async (
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/auth/Login';
+        window.location.href = '/manager/auth/adminLogin';
       }
       setError(
         response.data.msg || '공지사항 상세 정보를 불러오지 못했습니다.',
@@ -210,7 +210,7 @@ export const updateNoticeDetail = async (
 
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/auth/Login';
+    window.location.href = '/manager/auth/adminLogin';
     return Promise.reject(new Error('No access token found.'));
   }
   try {
@@ -234,7 +234,7 @@ export const updateNoticeDetail = async (
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/auth/Login';
+        window.location.href = '/manager/auth/adminLogin';
       }
       alert(response.data.msg || '공지사항 수정에 실패했습니다.');
     }

@@ -9,12 +9,16 @@ import TimeBoardPage from '@/pages/TimeBoard';
 import BoardPage from '@/pages/Board';
 import ProfilePage from '@/pages/Profile';
 import PostPage from '@/pages/Post';
+import SiginupPage from '@/pages/auth/Siginup';
+import ResetPasswordPage from '@/pages/auth/ResetPassword';
 
 function Routes() {
   return (
     <ReactRouters>
       <Route path='/auth'>
         <Route path='login' element={<LoginPage />} />
+        <Route path='siginup' element={<SiginupPage />} />
+        <Route path='resetPassword' element={<ResetPasswordPage />} />
       </Route>
 
       <Route path='/' element={<Layout />}>
