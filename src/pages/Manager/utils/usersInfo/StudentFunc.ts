@@ -8,7 +8,7 @@ export const unApproveUser = async (studentId: string, onClose: () => void) => {
   const accessToken = localStorage.getItem('accessToken');
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/auth/Login';
+    window.location.href = '/manager/auth/adminLogin';
     return Promise.reject(new Error('No access token found.'));
   }
   try {
@@ -30,7 +30,7 @@ export const unApproveUser = async (studentId: string, onClose: () => void) => {
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/auth/Login';
+        window.location.href = '/manager/auth/adminLogin';
       }
       alert(response.data.msg || '회수에 실패했습니다.');
     }
@@ -40,15 +40,20 @@ export const unApproveUser = async (studentId: string, onClose: () => void) => {
 };
 
 // 학생 정보를 가져오는 함수
+let alertShown = false; // 플래그 선언
+
 export const fetchStudents = async (
   setStudents: React.Dispatch<React.SetStateAction<Student[]>>,
   setFilteredStudents: React.Dispatch<React.SetStateAction<Student[]>>,
 ) => {
   const accessToken = localStorage.getItem('accessToken');
 
-  //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/auth/Login';
+    if (!alertShown) {
+      alertShown = true; // alert가 한 번만 표시되도록 설정
+      alert('다시 로그인을 해주세요.');
+      window.location.href = '/manager/auth/adminLogin';
+    }
     return Promise.reject(new Error('No access token found.'));
   }
   try {
@@ -82,10 +87,10 @@ export const fetchStudents = async (
       setStudents(studentsData);
       setFilteredStudents(studentsData);
     } else {
-      //JWT토큰 만료
-      if (response.data.msg === '유효하지 않은 토큰입니다') {
+      if (response.data.msg === '유효하지 않은 토큰입니다' && !alertShown) {
+        alertShown = true;
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/auth/Login';
+        window.location.href = '/manager/auth/adminLogin';
       }
       throw new Error(response.data.msg || '학생 정보를 불러오지 못했습니다.');
     }
@@ -102,7 +107,7 @@ export const handleSearch = async (
   const accessToken = localStorage.getItem('accessToken');
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/auth/Login';
+    window.location.href = '/manager/auth/adminLogin';
     return Promise.reject(new Error('No access token found.'));
   }
   try {
@@ -138,7 +143,7 @@ export const handleSearch = async (
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/auth/Login';
+        window.location.href = '/manager/auth/adminLogin';
       }
       throw new Error(response.data.msg || '학생 정보를 불러오지 못했습니다.');
     }

@@ -22,7 +22,15 @@ function UsersInfoPage() {
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
   useEffect(() => {
-    fetchStudents(setStudents, setFilteredStudents);
+    let isMounted = true;
+
+    if (isMounted) {
+      fetchStudents(setStudents, setFilteredStudents);
+    }
+
+    return () => {
+      isMounted = false; // 컴포넌트 언마운트 시 플래그를 변경하여 중복 호출 방지
+    };
   }, []);
 
   return (

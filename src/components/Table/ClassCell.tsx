@@ -34,7 +34,13 @@ function ClassCell({
     >
       {slotIndex ===
         timeSlots.indexOf(
-          `${Math.floor(currentClass.startTime)}:${currentClass.startTime % 1 === 0.5 ? '30' : '00'}`,
+          `${Math.floor(currentClass.startTime)}:${
+            currentClass.startTime % 1 === 0.5
+              ? '30'
+              : currentClass.startTime % 1 === 0.75
+                ? '45'
+                : '00'
+          }`,
         ) && (
         <span className='absolute top-2 left-0 right-0 mx-auto'>
           {currentClass.title}

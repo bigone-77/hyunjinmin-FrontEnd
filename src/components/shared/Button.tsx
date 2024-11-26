@@ -1,4 +1,4 @@
-type ButtonTheme = 'primary' | 'secondary' | 'sub' | 'login';
+type ButtonTheme = 'primary' | 'secondary' | 'sub' | 'login' | 'back';
 
 interface PrimaryButtonProps {
   theme?: ButtonTheme;
@@ -13,12 +13,14 @@ const secondary = 'bg-secondary text-white';
 const sub = 'bg-sub text-white';
 const login = 'bg-primary text-white font-bold w-full';
 const disabledStyle = 'disabled:bg-mono100 disabled:text-mono200';
+const back = 'bg-close text-white w-full';
 
 const color: Record<ButtonTheme, string> = {
   primary,
   secondary,
   sub,
   login,
+  back,
 };
 
 function BaseButton({

@@ -10,7 +10,7 @@ import RoundLabel from '@/components/shared/RoundLabel';
 interface IAccordionProps {
   name: string;
   school: string;
-  classDay: string;
+  classDay?: string;
   totalPoints: number;
 }
 
@@ -23,7 +23,7 @@ const Accordion = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const pointsString =
-    totalPoints > 0 ? `상점 ${totalPoints}점` : `벌점 ${totalPoints}점`;
+    totalPoints >= 0 ? `상점 ${totalPoints}점` : `벌점 ${totalPoints}점`;
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
@@ -54,8 +54,8 @@ const Accordion = ({
       >
         <p>{school}</p>
         <div className={`${flexRow} gap-x-4`}>
-          <p>{classDay} 반</p>
-          <p className={`${totalPoints > 0 ? 'text-green' : 'text-red'}`}>
+          {classDay ? <p>{classDay} 반</p> : null}
+          <p className={`${totalPoints >= 0 ? 'text-green' : 'text-red'}`}>
             {pointsString}
           </p>
         </div>
