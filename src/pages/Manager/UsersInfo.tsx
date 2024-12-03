@@ -5,33 +5,43 @@ import StudentDetailPopUp from '@/pages/Manager/utils/usersInfo/StudentDetailPop
 import StudentTable from '@/pages/Manager/utils/usersInfo/StudentTable';
 import { Student } from '@/pages/Manager/utils/usersInfo/StudentInter';
 
-import { useEffect, useState } from 'react';
-import {
-  fetchStudents,
-  handleSearch,
-  handleStudentClick,
-  handleClosePopUp,
-} from './utils/usersInfo/StudentFunc';
+import { useState } from 'react';
+
+import { useFetchStudents } from './utils/usersInfo/hooks/useFetchStudents';
+import { useSearchStudents } from './utils/usersInfo/hooks/useSearchStudents';
+import { useUnApproveUser } from './utils/usersInfo/hooks/useUnApproveUser';
 
 function UsersInfoPage() {
-  const [, setStudents] = useState<Student[]>([]);
-  const [searchName, setSearchName] = useState('');
-  const [searchAge, setSearchAge] = useState('');
-  const [searchSchool, setSearchSchool] = useState('');
-  const [filteredStudents, setFilteredStudents] = useState<Student[]>([]);
+  const {
+    //students,
+    filteredStudents,
+    setFilteredStudents,
+    isLoading,
+    error,
+  } = useFetchStudents();
+
+  const {
+    searchName,
+    setSearchName,
+    searchAge,
+    setSearchAge,
+    searchSchoolName,
+    setSearchSchoolName,
+    searchStudents,
+    isSearching,
+    searchError,
+  } = useSearchStudents(); // 검색 기능
+  const unApproveUser = useUnApproveUser(); // 권한 회수
+
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
-  useEffect(() => {
-    let isMounted = true;
+  const handleSearch = () => {
+    searchStudents(setFilteredStudents); // 검색 실행
+  };
 
-    if (isMounted) {
-      fetchStudents(setStudents, setFilteredStudents);
-    }
-
-    return () => {
-      isMounted = false; // 컴포넌트 언마운트 시 플래그를 변경하여 중복 호출 방지
-    };
-  }, []);
+  const handleUnApprove = (studentId: string) => {
+    unApproveUser(studentId, () => setSelectedStudent(null)); // 권한 회수 후 팝업 닫기
+  };
 
   return (
     <div className='w-full h-screen flex flex-col'>
@@ -45,22 +55,25 @@ function UsersInfoPage() {
             setSearchName={setSearchName}
             searchAge={searchAge}
             setSearchAge={setSearchAge}
-            searchSchool={searchSchool}
-            setSearchSchool={setSearchSchool}
-            handleSearch={() => handleSearch(searchName, setFilteredStudents)}
+            searchSchoolName={searchSchoolName}
+            setSearchSchoolName={setSearchSchoolName}
+            handleSearch={handleSearch}
+            isSearching={isSearching}
+            searchError={searchError}
           />
         </div>
+        {isLoading && <p>Loading...</p>}
+        {error && <p className='text-red-500'>{error}</p>}
         <StudentTable
           students={filteredStudents}
-          onStudentClick={(student) =>
-            handleStudentClick(student, setSelectedStudent)
-          }
+          onStudentClick={(student) => setSelectedStudent(student)}
         />
       </div>
       {selectedStudent && (
         <StudentDetailPopUp
-          student={selectedStudent}
-          onClose={() => handleClosePopUp(setSelectedStudent)}
+          studentId={selectedStudent.id}
+          onUnApprove={handleUnApprove}
+          onClose={() => setSelectedStudent(null)}
         />
       )}
     </div>

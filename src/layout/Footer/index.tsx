@@ -21,7 +21,7 @@ function Footer() {
       {
         id: 'i2',
         icon: RiCalendarScheduleLine,
-        url: '/timeBoard',
+        url: '/time-board',
       },
       {
         id: 'i3',

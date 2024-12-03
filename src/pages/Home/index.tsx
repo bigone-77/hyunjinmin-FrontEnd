@@ -5,9 +5,14 @@ import ClassCard from '@/components/shared/ClassCard';
 import Spacing from '@/components/shared/Spacing';
 
 import { useUserTotalInfo } from '@/components/home/hooks/useUserTotalInfo';
+import { useRecoilValue } from 'recoil';
+import { userState } from '@/recoil/atoms/user';
 
 function HomePage() {
-  const userId = localStorage.getItem('userId');
+  // Recoil에서 userId 가져오기
+  const { userId } = useRecoilValue(userState);
+
+  // LocalStorage에서 accessToken 가져오기
   const accessToken = localStorage.getItem('accessToken');
 
   type ClassItem = {

@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { schoolOptions, schoolCodeMapping } from '@/utils/getCode';
-import axios from 'axios';
+import { useInsertTimeTable } from '@/pages/Manager/utils/timeTable/hooks/useInsertTimeTable';
+
 function NewTimeTableForm() {
   const [className, setClassName] = useState('');
   const [schoolLevel, setSchoolLevel] = useState('');
   const [selectedSchool, setSelectedSchool] = useState('');
   const [selectedGrade, setSelectedGrade] = useState<number | ''>('');
+
+  const { insertTimeTable, isLoading, error } = useInsertTimeTable();
 
   const handleLevelChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSchoolLevel(e.target.value);
@@ -13,45 +16,17 @@ function NewTimeTableForm() {
   };
 
   const handleSubmit = async () => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (!accessToken) {
-      window.location.href = '/manager/auth/adminLogin';
-      return Promise.reject(new Error('No access token found.'));
-    }
-
     const schoolCode = schoolCodeMapping[selectedSchool] || '';
-    const requestData = {
-      CLASS_TYPE_NAME: className,
-      USE_YN: 'Y',
-      SCHL_CD: schoolCode,
-      GRADE: selectedGrade,
-    };
-
-    try {
-      const response = await axios.post(
-        '/systemMng/admin/classMng/insertMainClass',
-        requestData,
-        {
-          headers: {
-            Authorization: `${accessToken}`,
-          },
-        },
-      );
-
-      if (response.data.status === 'success') {
-        alert(response.data.msg || '시간표가 성공적으로 추가되었습니다.');
-      } else {
-        // JWT 토큰 만료 시 처리
-        if (response.data.msg === '유효하지 않은 토큰입니다') {
-          alert('다시 로그인을 해주세요.');
-          window.location.href = '/manager/auth/adminLogin';
-        } else {
-          alert(response.data.msg || '시간표 추가에 실패했습니다.');
-        }
-      }
-    } catch (error) {
-      console.error('Error submitting time table data:', error);
-      alert('서버 요청 중 오류가 발생했습니다.');
+    const isSuccess = await insertTimeTable(
+      className,
+      schoolCode,
+      selectedGrade,
+    );
+    if (isSuccess) {
+      setClassName('');
+      setSchoolLevel('');
+      setSelectedSchool('');
+      setSelectedGrade('');
     }
   };
 
@@ -118,9 +93,10 @@ function NewTimeTableForm() {
           className='bg-positive text-white p-2 rounded mt-4 w-full btn-shadow'
           onClick={handleSubmit}
         >
-          새 시간표 추가
+          {isLoading ? '추가 중...' : '새 시간표 추가'}
         </button>
       </div>
+      {error && <p className='text-red-500 mt-2'>{error}</p>}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { IoLockClosedOutline } from 'react-icons/io5';
-import axios from 'axios';
 
 import loginBg from '@/assets/svgs/bg-login.svg';
 import TextInput from '@/components/shared/TextInput';
@@ -8,36 +7,15 @@ import Spacing from '@/components/shared/Spacing';
 import Button from '@/components/shared/Button';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useLogin from '@/hooks/useLogin';
 
 function LoginPage() {
+  const { login, error } = useLogin();
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
   const handleLogin = async () => {
-    try {
-      const response = await axios.post('/systemMng/user/login', {
-        USER_ID: userId,
-        PASSWORD: password,
-      });
-
-      if (response.data.status === 'success') {
-        const { accessToken, USER_ID } = response.data;
-        localStorage.setItem('accessToken', accessToken); // 토큰 저장
-        localStorage.setItem('userId', USER_ID);
-        if ('USER_T' === response.data.USER_ROLE) {
-          window.location.href = '/manager';
-        } else {
-          window.location.href = '/';
-        }
-        console.log('response', response);
-      } else {
-        setError(response.data.msg);
-      }
-    } catch (error) {
-      setError('로그인에 실패했습니다. 다시 시도해 주세요.');
-      console.error('Login error:', error);
-    }
+    login(userId, password);
   };
 
   return (

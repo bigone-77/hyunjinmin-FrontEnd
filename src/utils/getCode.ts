@@ -49,3 +49,10 @@ export const classGBMap: { [key: string]: string } = {
   영어: '3',
   과학: '4',
 };
+
+export const subjectMap: { [key: string]: string } = {
+  '1': '국어',
+  '2': '수학',
+  '3': '영어',
+  '4': '과학',
+};

@@ -7,17 +7,20 @@ import './index.css';
 
 import App from '@/App.tsx';
 import { AlertContextProvider } from '@/contexts/AlertContext';
+import { RecoilRoot } from 'recoil';
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <AlertContextProvider>
-          <App />
-        </AlertContextProvider>
-      </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <AlertContextProvider>
+            <App />
+          </AlertContextProvider>
+        </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </RecoilRoot>
   </StrictMode>,
 );

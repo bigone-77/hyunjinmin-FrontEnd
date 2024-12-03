@@ -26,9 +26,9 @@ function StudentTable({ students, onStudentClick }: StudentTableProps) {
           >
             <td className='py-2 px-4 border-b'>{student.name}</td>
             <td className='py-2 px-4 border-b'>{student.age}</td>
-            <td className='py-2 px-4 border-b'>{student.school}</td>
+            <td className='py-2 px-4 border-b'>{student.schoolName}</td>
             <td className='py-2 px-4 border-b'>{student.email}</td>
-            <td className='py-2 px-4 border-b'>{student.phone}</td>
+            <td className='py-2 px-4 border-b'>{student.phoneNumber}</td>
             <td className='py-2 px-4 border-b'>{student.postalCode}</td>
             <td className='py-2 px-4 border-b'>{student.address}</td>
             <td className='py-2 px-4 border-b'>{student.rewardPoints}</td>

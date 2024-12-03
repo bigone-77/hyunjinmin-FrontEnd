@@ -12,7 +12,6 @@ function UserTable({ users, onUserClick }: UserTableProps) {
           <th className='py-2 px-4 border-b'>휴대폰 번호</th>
           <th className='py-2 px-4 border-b'>우편번호</th>
           <th className='py-2 px-4 border-b'>상세 주소</th>
-          <th className='py-2 px-4 border-b'>가입 승인여부</th>
         </tr>
       </thead>
       <tbody>
@@ -24,12 +23,11 @@ function UserTable({ users, onUserClick }: UserTableProps) {
           >
             <td className='py-2 px-4 border-b'>{user.name}</td>
             <td className='py-2 px-4 border-b'>{user.age}</td>
-            <td className='py-2 px-4 border-b'>{user.school}</td>
+            <td className='py-2 px-4 border-b'>{user.schoolName}</td>
             <td className='py-2 px-4 border-b'>{user.email}</td>
-            <td className='py-2 px-4 border-b'>{user.phone}</td>
+            <td className='py-2 px-4 border-b'>{user.phoneNumber}</td>
             <td className='py-2 px-4 border-b'>{user.postalCode}</td>
             <td className='py-2 px-4 border-b'>{user.address}</td>
-            <td className='py-2 px-4 border-b'>{user.aprovStatus}</td>
           </tr>
         ))}
       </tbody>

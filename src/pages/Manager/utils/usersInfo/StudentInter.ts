@@ -2,18 +2,30 @@ export interface Student {
   id: string;
   name: string;
   age: number;
-  school: string;
+  schoolName: string;
   email: string;
-  phone: string;
+  phoneNumber: string;
   postalCode: string;
   address: string;
   rewardPoints: number;
   penaltyPoints: number;
   totalPoints: number;
-  classes: string[]; // 듣는 수업
-  tuitionFees: number; // 원비
-  feesDay: number; // 원비 납부 일
-  feesStatus: boolean; // 원비 납부 여부
+}
+
+export interface StudentDetail {
+  id: string;
+  name: string;
+  age: number;
+  schoolName: string;
+  email: string;
+  phoneNumber: string;
+  postalCode: string;
+  address: string;
+  rewardPoints: number;
+  penaltyPoints: number;
+  totalPoints: number;
+  classes: string;
+  totalPrice: number;
 }
 
 export interface TabButtonProps {
@@ -27,13 +39,16 @@ export interface SearchBarProps {
   setSearchName: React.Dispatch<React.SetStateAction<string>>;
   searchAge: string;
   setSearchAge: React.Dispatch<React.SetStateAction<string>>;
-  searchSchool: string;
-  setSearchSchool: React.Dispatch<React.SetStateAction<string>>;
+  searchSchoolName: string;
+  setSearchSchoolName: React.Dispatch<React.SetStateAction<string>>;
   handleSearch: () => void;
+  isSearching: boolean;
+  searchError: string | null;
 }
 
 export interface PopUpProps {
-  student: Student | null;
+  studentId: string;
+  onUnApprove: (studentId: string) => void;
   onClose: () => void;
 }
 
