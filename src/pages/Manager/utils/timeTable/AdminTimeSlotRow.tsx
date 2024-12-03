@@ -1,5 +1,6 @@
 import AdminClassCell from './AdminClassCell';
-import { formatTime24, TimeSlotRowProps } from './adminTimeTableInter';
+import { TimeSlotRowProps } from './adminTimeTableInter';
+import { formatTime24 } from './adminTimeTableFunc';
 
 function AdminTimeSlotRow({
   time,
@@ -7,7 +8,8 @@ function AdminTimeSlotRow({
   timeSlots,
   classes,
   days,
-}: TimeSlotRowProps) {
+  refetch,
+}: TimeSlotRowProps & { refetch: () => void }) {
   const timeParts = time.split(':');
   const hour = parseInt(timeParts[0]);
   const minute = timeParts[1];
@@ -26,7 +28,7 @@ function AdminTimeSlotRow({
       {days.map((day) => {
         const currentClass = classes.find(
           (cls) =>
-            (cls.day || []).includes(day) &&
+            (cls.classDate || []).includes(day) &&
             fullTime >= cls.startTime &&
             fullTime < cls.startTime + cls.duration,
         );
@@ -38,6 +40,7 @@ function AdminTimeSlotRow({
             slotIndex={slotIndex}
             minute={minute}
             day={day}
+            refetch={refetch}
           />
         );
       })}

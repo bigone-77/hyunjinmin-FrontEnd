@@ -32,7 +32,6 @@ export const useClassList = (
     },
     enabled: !!userId && !!token && !!isWeekend,
     select: (data) => {
-      console.log('Raw data in select:', data);
       if (!Array.isArray(data)) {
         console.warn('Data is not an array');
         return [];

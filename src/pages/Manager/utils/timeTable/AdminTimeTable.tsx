@@ -1,30 +1,19 @@
 import { useState, useEffect } from 'react';
 import AdminHeaderRow from './AdminHeaderRow';
 import AdminTimeSlotRow from './AdminTimeSlotRow';
-
-interface ClassData {
-  classSeq: number;
-  teacherName: string;
-  className: string;
-  startTime: string;
-  endTime: string;
-  roomIndex: string;
-  price: number;
-  schoolCode: string;
-  schoolName: string;
-  grade: string;
-  regDate: string;
-  classColor: string;
-  classDate: string[]; // 요일 문자열 배열 (['월', '화', ...])
-}
+import { Class } from '@/pages/Manager/utils/timeTable/adminTimeTableInter';
 
 interface AdminTimeTableProps {
-  data: ClassData[];
+  data: Class[];
   isWeekend: boolean;
 }
 
-function AdminTimeTable({ data, isWeekend }: AdminTimeTableProps) {
-  const [timeTableData, setTimeTableData] = useState<ClassData[]>([]);
+function AdminTimeTable({
+  data,
+  isWeekend,
+  refetch,
+}: AdminTimeTableProps & { refetch: () => void }) {
+  const [timeTableData, setTimeTableData] = useState<Class[]>([]);
 
   useEffect(() => {
     setTimeTableData(data);
@@ -64,6 +53,7 @@ function AdminTimeTable({ data, isWeekend }: AdminTimeTableProps) {
                 timeSlots={timeSlots}
                 classes={timeTableData}
                 days={days}
+                refetch={refetch}
               />
             ))}
           </tbody>

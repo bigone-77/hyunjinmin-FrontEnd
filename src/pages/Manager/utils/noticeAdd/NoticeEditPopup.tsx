@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { handleSaveNotice } from './NoticeFunc';
 import { NoticeEditPopupProps } from './NoticeInter';
+import { useUpdateNotice } from '@/pages/Manager/utils/noticeAdd/hooks/useUpdateNotice';
 
 function NoticeEditPopup({
   isOpen,
@@ -10,7 +10,7 @@ function NoticeEditPopup({
 }: NoticeEditPopupProps) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const { updateNotice, isUpdating, error } = useUpdateNotice();
 
   useEffect(() => {
     if (notice) {
@@ -21,10 +21,19 @@ function NoticeEditPopup({
 
   if (!isOpen || !notice) return null;
 
-  const handleSave = () => {
-    if (notice) {
-      handleSaveNotice(notice, title, content, setError, onSave, onClose);
+  const handleSave = async () => {
+    if (!title || !content) {
+      alert('제목과 내용을 입력해주세요.');
+      return;
     }
+    const updatedNotice = {
+      ...notice,
+      NOTICE_SUBJ: title,
+      NOTICE_CONT: content,
+    };
+    await updateNotice(updatedNotice);
+    onSave(); // Refresh the list
+    onClose(); // Close the popup
   };
 
   return (
@@ -48,9 +57,12 @@ function NoticeEditPopup({
           {error && <p className='text-red-500 mt-2'>{error}</p>}
           <button
             onClick={handleSave}
-            className='bg-save text-white p-2 rounded w-full hover:bg-save-hover btn-shadow'
+            className={`bg-save text-white p-2 rounded w-full hover:bg-save-hover btn-shadow ${
+              isUpdating ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            disabled={isUpdating}
           >
-            저장
+            {isUpdating ? '저장 중...' : '저장'}
           </button>
           <button
             onClick={onClose}

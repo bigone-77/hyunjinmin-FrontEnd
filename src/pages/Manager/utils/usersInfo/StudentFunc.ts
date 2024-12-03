@@ -8,7 +8,7 @@ export const unApproveUser = async (studentId: string, onClose: () => void) => {
   const accessToken = localStorage.getItem('accessToken');
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/manager/auth/adminLogin';
+    window.location.href = '/manager/auth/admin-login';
     return Promise.reject(new Error('No access token found.'));
   }
   try {
@@ -30,7 +30,7 @@ export const unApproveUser = async (studentId: string, onClose: () => void) => {
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/manager/auth/adminLogin';
+        window.location.href = '/manager/auth/admin-login';
       }
       alert(response.data.msg || '회수에 실패했습니다.');
     }
@@ -52,7 +52,7 @@ export const fetchStudents = async (
     if (!alertShown) {
       alertShown = true; // alert가 한 번만 표시되도록 설정
       alert('다시 로그인을 해주세요.');
-      window.location.href = '/manager/auth/adminLogin';
+      window.location.href = '/manager/auth/admin-login';
     }
     return Promise.reject(new Error('No access token found.'));
   }
@@ -68,21 +68,19 @@ export const fetchStudents = async (
     );
 
     if (response.data.status === 'success') {
+      console.log('data', response.data);
       const studentsData = response.data.dl_userList.map((user: any) => ({
         id: user.USER_ID,
         name: user.USER_NM,
         age: user.USER_AGE,
         email: user.USER_EMAIL,
         phone: user.PHONE_NUM,
-        school: '',
-        postalCode: '',
-        address: '',
-        rewardPoints: 0,
-        penaltyPoints: 0,
-        classes: [],
-        tuitionFees: 0,
-        feesDay: 1,
-        feesStatus: true,
+        schoolName: user.SCHL_NM,
+        postalCode: user.USER_ADDR_NUM,
+        address: user.USER_ADDR_DTL,
+        rewardPoints: user.GoodP,
+        penaltyPoints: user.BadP,
+        totalPoints: user.totalP,
       }));
       setStudents(studentsData);
       setFilteredStudents(studentsData);
@@ -90,7 +88,7 @@ export const fetchStudents = async (
       if (response.data.msg === '유효하지 않은 토큰입니다' && !alertShown) {
         alertShown = true;
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/manager/auth/adminLogin';
+        window.location.href = '/manager/auth/admin-login';
       }
       throw new Error(response.data.msg || '학생 정보를 불러오지 못했습니다.');
     }
@@ -107,7 +105,7 @@ export const handleSearch = async (
   const accessToken = localStorage.getItem('accessToken');
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/manager/auth/adminLogin';
+    window.location.href = '/manager/auth/admin-login';
     return Promise.reject(new Error('No access token found.'));
   }
   try {
@@ -128,22 +126,19 @@ export const handleSearch = async (
         age: user.USER_AGE,
         email: user.USER_EMAIL,
         phone: user.PHONE_NUM,
-        school: '',
-        postalCode: '',
-        address: '',
-        rewardPoints: 0,
-        penaltyPoints: 0,
-        classes: [],
-        tuitionFees: 0,
-        feesDay: 1,
-        feesStatus: true,
+        schoolName: user.SCHL_NM,
+        postalCode: user.USER_ADDR_NUM,
+        address: user.USER_ADDR_DTL,
+        rewardPoints: user.GoodP,
+        penaltyPoints: user.BadP,
+        totalPoints: user.totalP,
       }));
       setFilteredStudents(searchedStudents);
     } else {
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/manager/auth/adminLogin';
+        window.location.href = '/manager/auth/admin-login';
       }
       throw new Error(response.data.msg || '학생 정보를 불러오지 못했습니다.');
     }

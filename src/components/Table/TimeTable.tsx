@@ -4,10 +4,16 @@ import HeaderRow from './HeaderRow';
 import TimeSlotRow from './TimeSlotRow';
 
 import { useClassList } from '@/components/Table/hooks/useClasses';
+import { useRecoilValue } from 'recoil';
+import { userState } from '@/recoil/atoms/user';
 function TimeTable() {
-  const [isWeekend, setIsWeekend] = useState(false);
-  const userId = localStorage.getItem('userId');
+  // Recoil에서 userId 가져오기
+  const { userId } = useRecoilValue(userState);
+
+  // LocalStorage에서 accessToken 가져오기
   const accessToken = localStorage.getItem('accessToken');
+
+  const [isWeekend, setIsWeekend] = useState(false);
 
   const generateTimeSlots = (start: number, end: number) => {
     const slots = [];

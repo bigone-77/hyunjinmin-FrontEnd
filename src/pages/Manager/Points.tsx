@@ -1,21 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Header from '@/pages/Manager/utils/Header';
 import Lnb from '@/pages/Manager/utils/Lnb';
 import SearchBar from '@/pages/Manager/utils/usersInfo/SearchBar';
-import { StudentPoints } from '@/pages/Manager/utils/points/PointsInter';
+import { useStudentPoints } from '@/pages/Manager/utils/points/hooks/useStudentPoints';
 import PointsTable from '@/pages/Manager/utils/points/PointsTable';
-import { fetchStudentPoints, handleSearch } from './utils/points/PointsFunc';
 
 function PointsPage() {
-  const [students, setStudents] = useState<StudentPoints[]>([]);
-  const [filteredStudents, setFilteredStudents] = useState<StudentPoints[]>([]);
+  const { students, filteredStudents, setFilteredStudents, isLoading, error } =
+    useStudentPoints();
   const [searchName, setSearchName] = useState<string>('');
   const [searchAge, setSearchAge] = useState<string>('');
   const [searchSchool, setSearchSchool] = useState<string>('');
 
-  useEffect(() => {
-    fetchStudentPoints(setStudents, setFilteredStudents);
-  }, []);
+  const handleSearch = () => {
+    const filtered = students.filter((student) => {
+      const matchesName =
+        searchName === '' || student.name.includes(searchName);
+      const matchesAge =
+        searchAge === '' || student.age.toString() === searchAge;
+      const matchesSchool =
+        searchSchool === '' || student.school.includes(searchSchool);
+
+      return matchesName && matchesAge && matchesSchool;
+    });
+    setFilteredStudents(filtered);
+  };
 
   return (
     <div className='w-full h-screen flex flex-col'>
@@ -29,19 +38,15 @@ function PointsPage() {
             setSearchName={setSearchName}
             searchAge={searchAge}
             setSearchAge={setSearchAge}
-            searchSchool={searchSchool}
-            setSearchSchool={setSearchSchool}
-            handleSearch={() =>
-              handleSearch(
-                students,
-                searchName,
-                searchAge,
-                searchSchool,
-                setFilteredStudents,
-              )
-            }
+            searchSchoolName={searchSchool}
+            setSearchSchoolName={setSearchSchool}
+            handleSearch={handleSearch}
+            isSearching={isLoading}
+            searchError={error}
           />
         </div>
+        {isLoading && <p>Loading...</p>}
+        {error && <p className='text-red-500'>{error}</p>}
         {/* 학생 정보 테이블 */}
         <PointsTable students={filteredStudents} />
       </div>

@@ -10,7 +10,7 @@ export const handleAddReward = async (
 
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/manager/auth/adminLogin';
+    window.location.href = '/manager/auth/admin-login';
     return Promise.reject(new Error('No access token found.'));
   }
   try {
@@ -35,7 +35,7 @@ export const handleAddReward = async (
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/manager/auth/adminLogin';
+        window.location.href = '/manager/auth/admin-login';
       }
       alert(response.data.msg || '상점 추가에 실패했습니다.');
     }
@@ -53,7 +53,7 @@ export const handleAddPenalty = async (
 
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/manager/auth/adminLogin';
+    window.location.href = '/manager/auth/admin-login';
     return Promise.reject(new Error('No access token found.'));
   }
   try {
@@ -78,7 +78,7 @@ export const handleAddPenalty = async (
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/manager/auth/adminLogin';
+        window.location.href = '/manager/auth/admin-login';
       }
       alert(response.data.msg || '벌점 추가에 실패했습니다.');
     }
@@ -96,7 +96,7 @@ export const fetchStudentPoints = async (
 
   //JWT토큰 없다면 로그인으로 이동
   if (!accessToken) {
-    window.location.href = '/manager/auth/adminLogin';
+    window.location.href = '/manager/auth/admin-login';
     return Promise.reject(new Error('No access token found.'));
   }
 
@@ -128,7 +128,7 @@ export const fetchStudentPoints = async (
       //JWT토큰 만료
       if (response.data.msg === '유효하지 않은 토큰입니다') {
         alert('다시 로그인을 해주세요.');
-        window.location.href = '/manager/auth/adminLogin';
+        window.location.href = '/manager/auth/admin-login';
       }
       alert(response.data.msg || '데이터를 가져오는데 실패했습니다.');
     }

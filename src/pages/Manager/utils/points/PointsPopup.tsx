@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { PointsPopupProps } from './PointsInter';
-import { handleAddReward, handleAddPenalty } from './PointsFunc';
+import { useManagePoints } from '@/pages/Manager/utils/points/hooks/useManagePoint';
+import Spacing from '@/components/shared/Spacing';
 
 function PointsPopup({ isOpen, student, onClose }: PointsPopupProps) {
-  const [rewardScore, setRewardScore] = useState(1); // 기본값은 1
-  const [penaltyScore, setPenaltyScore] = useState(1); // 기본값은 1
+  const { addReward, addPenalty } = useManagePoints();
+  const [rewardScore, setRewardScore] = useState(1);
+  const [penaltyScore, setPenaltyScore] = useState(1);
 
   if (!isOpen || !student) return null;
 
@@ -15,18 +17,23 @@ function PointsPopup({ isOpen, student, onClose }: PointsPopupProps) {
         <p>
           <strong>이름:</strong> {student.name}
         </p>
+        <Spacing size={6}></Spacing>
         <p>
           <strong>나이:</strong> {student.age}
         </p>
+        <Spacing size={6}></Spacing>
         <p>
           <strong>학교:</strong> {student.school}
         </p>
+        <Spacing size={6}></Spacing>
         <p>
           <strong>상점:</strong> {student.rewardPoints}
         </p>
+        <Spacing size={6}></Spacing>
         <p>
           <strong>벌점:</strong> {student.penaltyPoints}
         </p>
+        <Spacing size={6}></Spacing>
         <p>
           <strong>총점:</strong> {student.totalPoints}
         </p>
@@ -46,7 +53,7 @@ function PointsPopup({ isOpen, student, onClose }: PointsPopupProps) {
             </select>
           </label>
           <button
-            onClick={() => handleAddReward(student.id, rewardScore)}
+            onClick={() => addReward(student.id, rewardScore)}
             className='ml-2 bg-positive text-white p-2 rounded hover:bg-positive-hover btn-shadow'
           >
             상점 주기
@@ -69,7 +76,7 @@ function PointsPopup({ isOpen, student, onClose }: PointsPopupProps) {
             </select>
           </label>
           <button
-            onClick={() => handleAddPenalty(student.id, penaltyScore)}
+            onClick={() => addPenalty(student.id, penaltyScore)}
             className='ml-2 bg-negative text-white p-2 rounded hover:bg-negative-hover btn-shadow'
           >
             벌점 주기

@@ -20,7 +20,7 @@ export interface NoticeEditPopupProps {
   isOpen: boolean;
   notice: Notice | null;
   onClose: () => void;
-  onSave: (updatedNotice: Notice) => void;
+  onSave: () => void;
 }
 
 export interface NoticeDetail {
@@ -33,6 +33,8 @@ export interface NoticeDetail {
 
 export interface NoticeDetailPopupProps {
   isOpen: boolean;
-  notice: { NOTICE_IDX: number } | null;
+  notice: NoticeDetail | null;
   onClose: () => void;
+  error: string | null;
+  isLoading: boolean;
 }

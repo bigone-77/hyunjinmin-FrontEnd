@@ -1,21 +1,18 @@
 import { useState } from 'react';
-import { NoticePopupProps, Notice } from './NoticeInter';
-import { submitNewNotice, handleClose } from './NoticeFunc';
+import { useSubmitNewNotice } from './hooks/useSubmitNewNotice';
 
-function NoticeAddPopup({
-  isOpen,
-  onClose,
-}: NoticePopupProps & { onNoticeAdd: (notice: Notice) => void }) {
+interface NoticeAddPopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+function NoticeAddPopup({ isOpen, onClose }: NoticeAddPopupProps) {
   const [noticeTitle, setNoticeTitle] = useState('');
   const [noticeContent, setNoticeContent] = useState('');
-  const [message, setMessage] = useState('');
+  const { submitNewNotice, isSubmitting, message } = useSubmitNewNotice();
 
-  const onHandleClose = () => {
-    handleClose(setNoticeTitle, setNoticeContent, setMessage, onClose);
-  };
-
-  const onHandleAddNotice = () => {
-    submitNewNotice(noticeTitle, noticeContent, setMessage, onHandleClose);
+  const handleAddNotice = () => {
+    submitNewNotice(noticeTitle, noticeContent, onClose);
   };
 
   if (!isOpen) return null;
@@ -38,14 +35,15 @@ function NoticeAddPopup({
           className='border p-2 mt-5 mb-5 rounded w-full h-24'
         />
         <button
-          onClick={onHandleAddNotice}
+          onClick={handleAddNotice}
           className='bg-positive text-white p-2 rounded w-full hover:bg-positive-hover btn-shadow'
+          disabled={isSubmitting}
         >
-          공지사항 추가
+          {isSubmitting ? '추가 중...' : '공지사항 추가'}
         </button>
         {message && <p className='text-red-500 mt-2'>{message}</p>}
         <button
-          onClick={onHandleClose}
+          onClick={onClose}
           className='mt-4 bg-close text-white p-2 rounded w-full hover:bg-close-hover btn-shadow'
         >
           닫기
